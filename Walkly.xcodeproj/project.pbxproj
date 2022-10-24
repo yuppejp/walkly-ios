@@ -7,13 +7,69 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5606311E29015F3D003EDEEF /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5606311D29015F3D003EDEEF /* WidgetKit.framework */; };
+		5606312029015F3D003EDEEF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5606311F29015F3D003EDEEF /* SwiftUI.framework */; };
+		5606312329015F3D003EDEEF /* WalklyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606312229015F3D003EDEEF /* WalklyWidget.swift */; };
+		5606312629015F3E003EDEEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5606312529015F3E003EDEEF /* Assets.xcassets */; };
+		5606312829015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5606312429015F3D003EDEEF /* WalklyWidget.intentdefinition */; };
+		5606312929015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5606312429015F3D003EDEEF /* WalklyWidget.intentdefinition */; };
+		5606312C29015F3E003EDEEF /* WalklyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5606311B29015F3D003EDEEF /* WalklyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5606313629016231003EDEEF /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313129016231003EDEEF /* ChartView.swift */; };
+		5606313729016231003EDEEF /* RingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313229016231003EDEEF /* RingProgressView.swift */; };
+		5606313829016231003EDEEF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313329016231003EDEEF /* Util.swift */; };
+		5606313929016231003EDEEF /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313429016231003EDEEF /* ViewModel.swift */; };
+		5606313A29016231003EDEEF /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313529016231003EDEEF /* HealthModel.swift */; };
+		5606313D29016358003EDEEF /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313C29016358003EDEEF /* AppDefaults.swift */; };
+		5606313E2901636B003EDEEF /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313529016231003EDEEF /* HealthModel.swift */; };
+		5606313F29016376003EDEEF /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313C29016358003EDEEF /* AppDefaults.swift */; };
+		560631402901637F003EDEEF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313329016231003EDEEF /* Util.swift */; };
 		5662ED9629015D1700D59992 /* WalklyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5662ED9529015D1700D59992 /* WalklyApp.swift */; };
 		5662ED9829015D1700D59992 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5662ED9729015D1700D59992 /* ContentView.swift */; };
 		5662ED9A29015D1800D59992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5662ED9929015D1800D59992 /* Assets.xcassets */; };
 		5662ED9D29015D1800D59992 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5662ED9C29015D1800D59992 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5606312A29015F3E003EDEEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5662ED8A29015D1700D59992 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5606311A29015F3D003EDEEF;
+			remoteInfo = WalklyWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5606312D29015F3E003EDEEF /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5606312C29015F3E003EDEEF /* WalklyWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5606311B29015F3D003EDEEF /* WalklyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WalklyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5606311D29015F3D003EDEEF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		5606311F29015F3D003EDEEF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		5606312229015F3D003EDEEF /* WalklyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalklyWidget.swift; sourceTree = "<group>"; };
+		5606312429015F3D003EDEEF /* WalklyWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WalklyWidget.intentdefinition; sourceTree = "<group>"; };
+		5606312529015F3E003EDEEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5606312729015F3E003EDEEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5606313129016231003EDEEF /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		5606313229016231003EDEEF /* RingProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingProgressView.swift; sourceTree = "<group>"; };
+		5606313329016231003EDEEF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		5606313429016231003EDEEF /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		5606313529016231003EDEEF /* HealthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthModel.swift; sourceTree = "<group>"; };
+		5606313B2901630F003EDEEF /* Walkly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Walkly.entitlements; sourceTree = "<group>"; };
+		5606313C29016358003EDEEF /* AppDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
+		56063141290163FF003EDEEF /* WalklyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalklyWidgetExtension.entitlements; sourceTree = "<group>"; };
+		56063142290164D4003EDEEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5662ED9229015D1700D59992 /* Walkly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walkly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5662ED9529015D1700D59992 /* WalklyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalklyApp.swift; sourceTree = "<group>"; };
 		5662ED9729015D1700D59992 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -22,6 +78,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5606311829015F3D003EDEEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5606312029015F3D003EDEEF /* SwiftUI.framework in Frameworks */,
+				5606311E29015F3D003EDEEF /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5662ED8F29015D1700D59992 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -32,10 +97,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5606311C29015F3D003EDEEF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5606311D29015F3D003EDEEF /* WidgetKit.framework */,
+				5606311F29015F3D003EDEEF /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5606312129015F3D003EDEEF /* WalklyWidget */ = {
+			isa = PBXGroup;
+			children = (
+				5606312229015F3D003EDEEF /* WalklyWidget.swift */,
+				5606312429015F3D003EDEEF /* WalklyWidget.intentdefinition */,
+				5606312529015F3E003EDEEF /* Assets.xcassets */,
+				5606312729015F3E003EDEEF /* Info.plist */,
+			);
+			path = WalklyWidget;
+			sourceTree = "<group>";
+		};
 		5662ED8929015D1700D59992 = {
 			isa = PBXGroup;
 			children = (
+				56063141290163FF003EDEEF /* WalklyWidgetExtension.entitlements */,
 				5662ED9429015D1700D59992 /* Walkly */,
+				5606312129015F3D003EDEEF /* WalklyWidget */,
+				5606311C29015F3D003EDEEF /* Frameworks */,
 				5662ED9329015D1700D59992 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				5662ED9229015D1700D59992 /* Walkly.app */,
+				5606311B29015F3D003EDEEF /* WalklyWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,8 +140,16 @@
 		5662ED9429015D1700D59992 /* Walkly */ = {
 			isa = PBXGroup;
 			children = (
-				5662ED9529015D1700D59992 /* WalklyApp.swift */,
+				56063142290164D4003EDEEF /* Info.plist */,
+				5606313B2901630F003EDEEF /* Walkly.entitlements */,
+				5606313C29016358003EDEEF /* AppDefaults.swift */,
+				5606313129016231003EDEEF /* ChartView.swift */,
 				5662ED9729015D1700D59992 /* ContentView.swift */,
+				5606313529016231003EDEEF /* HealthModel.swift */,
+				5606313229016231003EDEEF /* RingProgressView.swift */,
+				5606313329016231003EDEEF /* Util.swift */,
+				5606313429016231003EDEEF /* ViewModel.swift */,
+				5662ED9529015D1700D59992 /* WalklyApp.swift */,
 				5662ED9929015D1800D59992 /* Assets.xcassets */,
 				5662ED9B29015D1800D59992 /* Preview Content */,
 			);
@@ -70,6 +167,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5606311A29015F3D003EDEEF /* WalklyWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5606313029015F3E003EDEEF /* Build configuration list for PBXNativeTarget "WalklyWidgetExtension" */;
+			buildPhases = (
+				5606311729015F3D003EDEEF /* Sources */,
+				5606311829015F3D003EDEEF /* Frameworks */,
+				5606311929015F3D003EDEEF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WalklyWidgetExtension;
+			productName = WalklyWidgetExtension;
+			productReference = 5606311B29015F3D003EDEEF /* WalklyWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		5662ED9129015D1700D59992 /* Walkly */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5662EDA029015D1800D59992 /* Build configuration list for PBXNativeTarget "Walkly" */;
@@ -77,10 +191,12 @@
 				5662ED8E29015D1700D59992 /* Sources */,
 				5662ED8F29015D1700D59992 /* Frameworks */,
 				5662ED9029015D1700D59992 /* Resources */,
+				5606312D29015F3E003EDEEF /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5606312B29015F3E003EDEEF /* PBXTargetDependency */,
 			);
 			name = Walkly;
 			productName = Walkly;
@@ -97,6 +213,9 @@
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					5606311A29015F3D003EDEEF = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
 					5662ED9129015D1700D59992 = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
@@ -116,11 +235,20 @@
 			projectRoot = "";
 			targets = (
 				5662ED9129015D1700D59992 /* Walkly */,
+				5606311A29015F3D003EDEEF /* WalklyWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5606311929015F3D003EDEEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5606312629015F3E003EDEEF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5662ED9029015D1700D59992 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -133,18 +261,101 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5606311729015F3D003EDEEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5606312829015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */,
+				5606313F29016376003EDEEF /* AppDefaults.swift in Sources */,
+				560631402901637F003EDEEF /* Util.swift in Sources */,
+				5606313E2901636B003EDEEF /* HealthModel.swift in Sources */,
+				5606312329015F3D003EDEEF /* WalklyWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5662ED8E29015D1700D59992 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5606312929015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */,
+				5606313829016231003EDEEF /* Util.swift in Sources */,
+				5606313D29016358003EDEEF /* AppDefaults.swift in Sources */,
+				5606313729016231003EDEEF /* RingProgressView.swift in Sources */,
+				5606313A29016231003EDEEF /* HealthModel.swift in Sources */,
 				5662ED9829015D1700D59992 /* ContentView.swift in Sources */,
 				5662ED9629015D1700D59992 /* WalklyApp.swift in Sources */,
+				5606313629016231003EDEEF /* ChartView.swift in Sources */,
+				5606313929016231003EDEEF /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5606312B29015F3E003EDEEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5606311A29015F3D003EDEEF /* WalklyWidgetExtension */;
+			targetProxy = 5606312A29015F3E003EDEEF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		5606312E29015F3E003EDEEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WalklyWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 358F964YVR;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WalklyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WalklyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.yuppe.Walkly.WalklyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		5606312F29015F3E003EDEEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WalklyWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 358F964YVR;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WalklyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WalklyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.yuppe.Walkly.WalklyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		5662ED9E29015D1800D59992 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -262,64 +473,89 @@
 		5662EDA129015D1800D59992 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Walkly/Walkly.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Walkly/Preview Content\"";
 				DEVELOPMENT_TEAM = 358F964YVR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Walkly/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "ヘルスデータへのアクセスを許可してください";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jp.yuppe.Walkly.Walkly;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.yuppe.Walkly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		5662EDA229015D1800D59992 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Walkly/Walkly.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Walkly/Preview Content\"";
 				DEVELOPMENT_TEAM = 358F964YVR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Walkly/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "ヘルスデータへのアクセスを許可してください";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jp.yuppe.Walkly.Walkly;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.yuppe.Walkly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5606313029015F3E003EDEEF /* Build configuration list for PBXNativeTarget "WalklyWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5606312E29015F3E003EDEEF /* Debug */,
+				5606312F29015F3E003EDEEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5662ED8D29015D1700D59992 /* Build configuration list for PBXProject "Walkly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
