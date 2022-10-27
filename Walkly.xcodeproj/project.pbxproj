@@ -27,6 +27,7 @@
 		5662ED9829015D1700D59992 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5662ED9729015D1700D59992 /* ContentView.swift */; };
 		5662ED9A29015D1800D59992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5662ED9929015D1800D59992 /* Assets.xcassets */; };
 		5662ED9D29015D1800D59992 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5662ED9C29015D1800D59992 /* Preview Assets.xcassets */; };
+		56E38E182907EDF900BA7473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313129016231003EDEEF /* ChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,6 +271,7 @@
 				560631402901637F003EDEEF /* Util.swift in Sources */,
 				5606313E2901636B003EDEEF /* HealthModel.swift in Sources */,
 				5606312329015F3D003EDEEF /* WalklyWidget.swift in Sources */,
+				56E38E182907EDF900BA7473 /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

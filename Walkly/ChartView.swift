@@ -100,6 +100,8 @@ struct LineChartView: View {
     var stacked = false
     var target: Double?
     var annotation: Bool = true
+    var xAxis = true
+    var yAxis = true
 
     var body: some View {
         Chart(chartItems) { item in
@@ -108,20 +110,21 @@ struct LineChartView: View {
                 y: .value("value", item.value)
             )
             .foregroundStyle(Color.green.gradient.opacity(0.7))
+            .interpolationMethod(.catmullRom) // Use curved line to join points
             
-            PointMark(
-                x: .value("label", item.label),
-                y: .value("value", item.value)
-            )
-            .foregroundStyle(Color.green.opacity(0.7))
+//            PointMark(
+//                x: .value("label", item.label),
+//                y: .value("value", item.value)
+//            )
+//            .foregroundStyle(Color.green.opacity(0.7))
 
             if stacked {
                 RuleMark(y: .value("Current", total))
-                    .lineStyle(StrokeStyle(lineWidth: 1))
+                    .lineStyle(StrokeStyle(lineWidth: 0))
                     .foregroundStyle(.gray)
                     .annotation(position: .top, alignment: .trailing) {
-                        Text("現在 \(total.toIntegerString())")
-                            .font(.caption)
+                        Text(total.toIntegerString())
+                            .font(.callout)
                             .foregroundColor(.gray)
                     }
             }
@@ -137,8 +140,25 @@ struct LineChartView: View {
                     }
             }
         }
-        .chartXAxis(Visibility.automatic)
-        .chartYAxis(Visibility.automatic)
+        //.chartXAxis(Visibility.automatic)
+        .chartXAxis() {
+            AxisMarks(preset: .automatic, position: .automatic, values: .automatic) { value in
+                AxisGridLine()
+                AxisTick()
+                if xAxis {
+                    AxisValueLabel()
+                }
+            }
+        }
+        .chartYAxis() {
+            AxisMarks(preset: .automatic, position: .automatic, values: .automatic) { value in
+                AxisGridLine()
+                AxisTick()
+                if yAxis {
+                    AxisValueLabel()
+                }
+            }
+        }
         .chartYScale(domain: 0...(maxY * 1.1))
         //.chartYScale(domain: ClosedRange(uncheckedBounds: (lower: 0, upper: maxY)))
         //.chartXAxisLabel("Label")
@@ -184,7 +204,7 @@ struct LineChartView: View {
 }
 
 struct BarChartTestView: View {
-    @ObservedObject var chartData = ChartData(data: [
+    var chartData = ChartData(data: [
         .init(label: "Sun", value: 9000),
         .init(label: "Mon", value: 5000),
         .init(label: "Tue", value: 7000),

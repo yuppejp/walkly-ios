@@ -15,7 +15,7 @@ struct Entry: TimelineEntry {
     var date: Date = Date()
     var targetSteps: Double = 0.0
     var statistics: [HealthStatistics] = []
-    //var chartData =  ChartData(data: [])
+    static var chartData = ChartData(data: [])
     var error: Error?
 
     func getStatistics(identifier: HKQuantityTypeIdentifier) -> HealthStatistics {
@@ -34,11 +34,11 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         Task {
             do {
-                let results = try await model.fetchTody(identifiers: [.stepCount, .distanceWalkingRunning])
+                let todayResults = try await model.fetchTody(identifiers: [.stepCount, .distanceWalkingRunning])
                 
                 // 成功時の値を保存
                 let defaluts = AppDefaults()
-                for stat in results {
+                for stat in todayResults {
                     switch stat.identifier  {
                     case .stepCount:
                         defaluts.lastStepCount = stat.value
@@ -49,9 +49,24 @@ struct Provider: TimelineProvider {
                     default: break
                     }
                 }
+                
+                let startOfToday = Calendar.current.startOfDay(for: Date())
+                let from = startOfToday
+                let to = Date()
+                let anchor = startOfToday
+                let interval = DateComponents(hour: 1)
+                let periodResult = try await model.fetchPeriod(identifier: .stepCount, from: from, to: to, anchor: anchor, interval: interval)
+
+                let data = ChartData(data: [])
+                for result in periodResult {
+                    let label = result.startDate.toString("H")
+                    let item = ChartDataItem(label: label, value: result.value)
+                    data.items.append(item)
+                 }
+                Entry.chartData = data
 
                 DispatchQueue.main.async {
-                    let entry = Entry(targetSteps: defaluts.targetSteps, statistics: results)
+                    let entry = Entry(targetSteps: defaluts.targetSteps, statistics: todayResults)
                     let timeline = Timeline(entries: [entry], policy: .atEnd)
                     completion(timeline)
                 }
@@ -229,7 +244,8 @@ struct WidgetContentView: View {
 
     var body: some View {
         switch WidgetFamily {
-        case .systemSmall: SmallWidgetView(entry: entry)
+        case .systemSmall: SystemSmallWidgetView(entry: entry)
+        case .systemMedium: SystemMediumWidgetView(entry: entry)
         case .accessoryCircular: AccessoryCircularWidgetView(entry: entry)
         case .accessoryRectangular: AccessoryRectangularWidgetView(entry: entry)
         case .accessoryInline: AccessoryInlineWidgetView(entry: entry)
@@ -239,7 +255,7 @@ struct WidgetContentView: View {
     }
 }
 
-struct SmallWidgetView: View {
+struct SystemSmallWidgetView: View {
     var entry: Entry
 
     var body: some View {
@@ -335,6 +351,28 @@ struct SmallWidgetView: View {
     }
 }
 
+struct SystemMediumWidgetView: View {
+    var entry: Entry
+//    var chartData = ChartData(data: [
+//        .init(label: "Sun", value: 9000),
+//        .init(label: "Mon", value: 5000),
+//        .init(label: "Tue", value: 7000),
+//        .init(label: "Wed", value: 4000),
+//        .init(label: "Thu", value: 3000),
+//        .init(label: "Fri", value: 8000),
+//        .init(label: "Sat", value: 13000)
+//    ])
+
+    var body: some View {
+        HStack(spacing: 0) {
+            SystemSmallWidgetView(entry: entry)
+            LineChartView(data: Entry.chartData, stacked: true, target: entry.targetSteps, xAxis: false, yAxis: false)
+                .frame(maxWidth: .infinity)
+                .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 16))
+        }
+    }
+}
+
 struct AccessoryCircularWidgetView: View {
     var entry: Entry
 
@@ -384,45 +422,50 @@ struct AccessoryRectangularWidgetView: View {
         let stepCount = entry.getStatistics(identifier: .stepCount)
         let steps = stepCount.value
         let total = entry.targetSteps
-        let km = entry.getStatistics(identifier: .distanceWalkingRunning)
+        //let km = entry.getStatistics(identifier: .distanceWalkingRunning)
         
         HStack(spacing: 0) {
-            Gauge(value: steps, in: 0...total) {
-                Image(systemName: "figure.walk")
-                    .font(.headline)
-            } currentValueLabel: {
-                Text(steps, format: .number.precision(.fractionLength(0)))
-                    .font(.headline)
-            }
-            .gaugeStyle(.accessoryCircular)
-        
-            VStack(alignment: .leading, spacing: 0) {
-                HStack(spacing: 0) {
-                    if entry.error == nil {
-                        Text(km.value, format: .number.precision(.fractionLength(1)))
-                        + Text(" km")
-                            .font(.caption)
-                    } else {
-                        HStack(spacing: 0) {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .font(.caption2)
-                            Text("タップで更新")
-                                .font(.caption2)
-                        }
-                    }
-                }
-                HStack(spacing: 0) {
-                    Text(stepCount.endDate, style: .time)
-                    + Text(" 計測")
-                        .font(.caption)
-                }
-                HStack(spacing: 0) {
-                    Text(Date(), style: .time)
-                    + Text(Date(), style: .offset)
-                        .font(.caption)
-                }
-            }
-            .padding(.leading, 6)
+            AccessoryCircularWidgetView(entry: entry)
+//            Gauge(value: steps, in: 0...total) {
+//                Image(systemName: "figure.walk")
+//                    .font(.headline)
+//            } currentValueLabel: {
+//                Text(steps, format: .number.precision(.fractionLength(0)))
+//                    .font(.headline)
+//            }
+//            .gaugeStyle(.accessoryCircular)
+
+
+        LineChartView(data: Entry.chartData, stacked: true, target: entry.targetSteps, xAxis: false, yAxis: false)
+                .frame(maxWidth: .infinity)
+            
+//            VStack(alignment: .leading, spacing: 0) {
+//                HStack(spacing: 0) {
+//                    if entry.error == nil {
+//                        Text(km.value, format: .number.precision(.fractionLength(1)))
+//                        + Text(" km")
+//                            .font(.caption)
+//                    } else {
+//                        HStack(spacing: 0) {
+//                            Image(systemName: "exclamationmark.triangle.fill")
+//                                .font(.caption2)
+//                            Text("タップで更新")
+//                                .font(.caption2)
+//                        }
+//                    }
+//                }
+//                HStack(spacing: 0) {
+//                    Text(stepCount.endDate, style: .time)
+//                    + Text(" 計測")
+//                        .font(.caption)
+//                }
+//                HStack(spacing: 0) {
+//                    Text(Date(), style: .time)
+//                    + Text(Date(), style: .offset)
+//                        .font(.caption)
+//                }
+//            }
+//            .padding(.leading, 6)
         }
     }
 }
@@ -458,7 +501,7 @@ struct WalklyWedget: Widget {
             WidgetContentView(entry: entry)
         }).description(Text("Appleヘルスケアのデータを元に歩数や関連情報を表示します"))
             .configurationDisplayName(Text("歩数の表示"))
-            .supportedFamilies([.systemSmall,
+            .supportedFamilies([.systemSmall, .systemMedium,
                                 .accessoryCircular, .accessoryRectangular, .accessoryInline])
     }
 }
@@ -488,6 +531,9 @@ struct WalklyWedget: Widget {
 struct WalklyWedget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
+            WidgetContentView(entry: Entry(date: Date(), statistics: []))
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .previewDisplayName("systemMedium")
             WidgetContentView(entry: Entry(date: Date(), statistics: []))
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDisplayName("systemSmall")

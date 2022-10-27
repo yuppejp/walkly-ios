@@ -56,17 +56,17 @@ class HealthModel {
                 })
                 self.healthStore.execute(query)
 
-                // バックグランドでのヘルスケアデータの更新検知を有効にする
-                self.healthStore.enableBackgroundDelivery(for: objectType, frequency: .immediate, withCompletion: { success, error in
-                    if success {
-                        print("Enabled background delivery.")
-                    } else {
-                        if let error = error {
-                            print("Failed to enable background delivery.")
-                            print("Error = \(error)")
-                        }
-                    }
-                })
+//                // バックグランドでのヘルスケアデータの更新検知を有効にする
+//                self.healthStore.enableBackgroundDelivery(for: objectType, frequency: .immediate, withCompletion: { success, error in
+//                    if success {
+//                        print("Enabled background delivery.")
+//                    } else {
+//                        if let error = error {
+//                            print("Failed to enable background delivery.")
+//                            print("Error = \(error)")
+//                        }
+//                    }
+//                })
             }
         })
     }
@@ -531,8 +531,8 @@ class HealthAsyncModel {
             })
             healthStore.execute(query)
             
-            // バックグランドでのヘルスケアデータの更新検知を有効にする
-            try await healthStore.enableBackgroundDelivery(for: objectType, frequency: .immediate)
+//            // バックグランドでのヘルスケアデータの更新検知を有効にする
+//            try await healthStore.enableBackgroundDelivery(for: objectType, frequency: .immediate)
         }
     }
 
