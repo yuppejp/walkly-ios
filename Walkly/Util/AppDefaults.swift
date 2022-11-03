@@ -44,7 +44,8 @@ struct AppDefaultsView: View {
         }
         .onChange(of: defaults.showOffsetTime) { newValue in 
             // ウィジェットに更新通知
-            WidgetCenter.shared.reloadTimelines(ofKind: AppDefaults.widgetKind)
+            WidgetCenter.shared.reloadTimelines(ofKind: AppDefaults.simpleWidgetKind)
+            WidgetCenter.shared.reloadTimelines(ofKind: AppDefaults.chartWidgetKind)
         }
     }
 }
@@ -58,8 +59,8 @@ struct AppDefaultsView_Previews: PreviewProvider {
 // Widgetkit cannot use @AppStrage, so use UserDefaults
 class AppDefaults: ObservableObject {
     static let appGroupName = "group.jp.yuppe.walkly"
-    static let widgetKind = "jp.yuppe.Walkly.WalklyWedget"
-    //static let accessoryWidgetKind = "jp.yuppe.Walkly.AccessoryWedget"
+    static let simpleWidgetKind = "jp.yuppe.Walkly.WalklyWedget"
+    static let chartWidgetKind = "jp.yuppe.Walkly.chartWedget"
     private let userDefaults = UserDefaults(suiteName: appGroupName)
 
     @Published var targetSteps: Double {

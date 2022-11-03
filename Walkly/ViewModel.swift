@@ -208,7 +208,7 @@ class ViewModel: ObservableObject, Identifiable {
                     }
                     
                     for result in results {
-                        //print("***** startDate: \(result.startDate.toString()), endDate: \(result.endDate.toString()), value: \(result.value)")
+                        print("***** startDate: \(result.startDate.toString()), endDate: \(result.endDate.toString()), value: \(result.value)")
                         
                         var label = ""
                         

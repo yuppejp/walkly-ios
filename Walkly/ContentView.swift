@@ -69,8 +69,8 @@ struct ContentView: View {
         .onChange(of: scenePhase) { phase in
             if phase == .active {
                 // nofification to widget
-                WidgetCenter.shared.reloadTimelines(ofKind: AppDefaults.widgetKind)
-                //WidgetCenter.shared.reloadTimelines(ofKind: AppDefaults.accessoryWidgetKind)
+                WidgetCenter.shared.reloadTimelines(ofKind: AppDefaults.simpleWidgetKind)
+                WidgetCenter.shared.reloadTimelines(ofKind: AppDefaults.chartWidgetKind)
             }
         }
     }

@@ -27,6 +27,9 @@
 		5662ED9829015D1700D59992 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5662ED9729015D1700D59992 /* ContentView.swift */; };
 		5662ED9A29015D1800D59992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5662ED9929015D1800D59992 /* Assets.xcassets */; };
 		5662ED9D29015D1800D59992 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5662ED9C29015D1800D59992 /* Preview Assets.xcassets */; };
+		56C6B7CA29134244006141EA /* HealthAsyncModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C6B7C929134244006141EA /* HealthAsyncModel.swift */; };
+		56C6B7CB29134244006141EA /* HealthAsyncModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C6B7C929134244006141EA /* HealthAsyncModel.swift */; };
+		56C6B7CE29134873006141EA /* RingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313229016231003EDEEF /* RingProgressView.swift */; };
 		56E38E182907EDF900BA7473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313129016231003EDEEF /* ChartView.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +79,7 @@
 		5662ED9729015D1700D59992 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5662ED9929015D1800D59992 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5662ED9C29015D1800D59992 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		56C6B7C929134244006141EA /* HealthAsyncModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAsyncModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,18 +145,16 @@
 		5662ED9429015D1700D59992 /* Walkly */ = {
 			isa = PBXGroup;
 			children = (
-				56063142290164D4003EDEEF /* Info.plist */,
 				5606313B2901630F003EDEEF /* Walkly.entitlements */,
-				5606313C29016358003EDEEF /* AppDefaults.swift */,
-				5606313129016231003EDEEF /* ChartView.swift */,
+				56063142290164D4003EDEEF /* Info.plist */,
 				5662ED9729015D1700D59992 /* ContentView.swift */,
-				5606313529016231003EDEEF /* HealthModel.swift */,
-				5606313229016231003EDEEF /* RingProgressView.swift */,
-				5606313329016231003EDEEF /* Util.swift */,
 				5606313429016231003EDEEF /* ViewModel.swift */,
 				5662ED9529015D1700D59992 /* WalklyApp.swift */,
 				5662ED9929015D1800D59992 /* Assets.xcassets */,
+				56C6B7CC29134843006141EA /* Model */,
 				5662ED9B29015D1800D59992 /* Preview Content */,
+				56C6B7CF291348A8006141EA /* Util */,
+				56C6B7CD2913484E006141EA /* ViewComponent */,
 			);
 			path = Walkly;
 			sourceTree = "<group>";
@@ -163,6 +165,33 @@
 				5662ED9C29015D1800D59992 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		56C6B7CC29134843006141EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5606313529016231003EDEEF /* HealthModel.swift */,
+				56C6B7C929134244006141EA /* HealthAsyncModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		56C6B7CD2913484E006141EA /* ViewComponent */ = {
+			isa = PBXGroup;
+			children = (
+				5606313129016231003EDEEF /* ChartView.swift */,
+				5606313229016231003EDEEF /* RingProgressView.swift */,
+			);
+			path = ViewComponent;
+			sourceTree = "<group>";
+		};
+		56C6B7CF291348A8006141EA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				5606313C29016358003EDEEF /* AppDefaults.swift */,
+				5606313329016231003EDEEF /* Util.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +296,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5606312829015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */,
+				56C6B7CE29134873006141EA /* RingProgressView.swift in Sources */,
+				56C6B7CB29134244006141EA /* HealthAsyncModel.swift in Sources */,
 				5606313F29016376003EDEEF /* AppDefaults.swift in Sources */,
 				560631402901637F003EDEEF /* Util.swift in Sources */,
 				5606313E2901636B003EDEEF /* HealthModel.swift in Sources */,
@@ -279,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56C6B7CA29134244006141EA /* HealthAsyncModel.swift in Sources */,
 				5606312929015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */,
 				5606313829016231003EDEEF /* Util.swift in Sources */,
 				5606313D29016358003EDEEF /* AppDefaults.swift in Sources */,

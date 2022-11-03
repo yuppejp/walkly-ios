@@ -102,6 +102,7 @@ struct LineChartView: View {
     var annotation: Bool = true
     var xAxis = true
     var yAxis = true
+    var accessory = false
 
     var body: some View {
         Chart(chartItems) { item in
@@ -124,8 +125,8 @@ struct LineChartView: View {
                     .foregroundStyle(.gray)
                     .annotation(position: .top, alignment: .trailing) {
                         Text(total.toIntegerString())
-                            .font(.callout)
-                            .foregroundColor(.gray)
+                            .font(accessory ? .headline : .callout)
+                            .foregroundColor(accessory ? .primary : .gray)
                     }
             }
 
@@ -159,10 +160,9 @@ struct LineChartView: View {
                 }
             }
         }
-        .chartYScale(domain: 0...(maxY * 1.1))
+        .chartYScale(domain: 0...(maxY * (accessory ? 1.7 : 1.2)))
         //.chartYScale(domain: ClosedRange(uncheckedBounds: (lower: 0, upper: maxY)))
         //.chartXAxisLabel("Label")
-        
         .onAppear {
             update(data.items)
         }

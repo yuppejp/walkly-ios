@@ -87,20 +87,22 @@ struct RingProgressView_Previews: PreviewProvider {
 struct CircularCapacityView: View {
     var value: Double
     var total: Double
-    @State private var current = 0.0
+    @State private var current = 1.0
     @State private var scale = 1.0
     //@State private var padding = 0.0
     
     var body: some View {
         GeometryReader{ geometry in
             VStack {
-                Gauge(value: current, in: 0...total) {
+                Gauge(value: current, in: 1...total) {
                     //Text(value / 100, format: .percent)
                 }
                 .gaugeStyle(.accessoryCircularCapacity)
                 .scaleEffect(scale)
                 .tint(.green)
                 .background(GeometryReader{ inner -> Text in
+                    //print("***** [CircularCapacityView] current: \(current), total: \(total)")
+                    
                     DispatchQueue.main.async {
                         let diameter = geometry.size.width
                         scale = inner.size.width == 0 ? 1.0 : diameter / inner.size.width
@@ -114,12 +116,12 @@ struct CircularCapacityView: View {
             .padding()
             .onAppear {
                 withAnimation() {
-                    current = value
+                    current = min(max(value, 1), total) // ゲージの範囲に収める(1〜total)
                 }
             }
             .onChange(of: value) { newValue in
                 withAnimation() {
-                    current = newValue
+                    current = min(max(newValue, 1), total) // ゲージの範囲に収める(1〜total)
                 }
             }
         }
