@@ -16,34 +16,34 @@ struct AppDefaultsView: View {
     
     var body: some View {
         Form {
-            Section(header: Text("目標歩数(1日)")) {
+            Section(header: Text("TargetStepsPerDay")) {
                 Stepper(value: $defaults.targetSteps, in: 100...60_000, step: 100) {
                     HStack {
                         Text(defaults.targetSteps, format: .number.precision(.fractionLength(0)))
-                        Text("歩")
+                        Text("StepsUnit")
                     }
                 }
             }
-            Section(header: Text("ロック画面の円形ウジェット")) {
+            Section(header: Text("AccessoryCircularWidget")) {
                 Toggle(isOn: $defaults.showOffsetTime) {
                     VStack(alignment: .leading) {
-                        Text("ゲージに更新経過時間を表示")
-                        Text("前回更新後の経過時間を表示します")
+                        Text("ShowUpdateTime")
+                        Text("ShowUpdateTimeDescription")
                             .font(.caption)
                             .foregroundColor(.gray)
                     }
                 }
             }
-            Section(header: Text("データソース")) {
+            Section(header: Text("DataSource")) {
                 Button(action: {
                     openURL(URL(string: "x-apple-health://")!)
                 }) {
-                    Label("ヘルスケアを開く", systemImage: "staroflife.fill")
+                    Label("OpenHealthCare", systemImage: "staroflife.fill")
                 }
             }
         }
         .onChange(of: defaults.showOffsetTime) { newValue in 
-            // ウィジェットに更新通知
+            // Update notification to widget
             WidgetCenter.shared.reloadTimelines(ofKind: AppDefaults.simpleWidgetKind)
             WidgetCenter.shared.reloadTimelines(ofKind: AppDefaults.chartWidgetKind)
         }
@@ -81,8 +81,7 @@ class AppDefaults: ObservableObject {
         }
     }
     
-    
-    // ウィジェット共有用
+    // for sharing widgets
     @Published var lastError: String {
         didSet {
             userDefaults!.set(lastError, forKey: "lastError")

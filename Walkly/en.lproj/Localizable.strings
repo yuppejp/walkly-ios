@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  Walkly
+
+  Created by yukio on 2022/11/05.
+  
+*/
+
+// Main View
+"Steps" = "Steps";
+"Settings" = "Settings";
+"Target" = "Target";
+"Distance" = "Distance";
+"EnergyBurned" = "Energy Burned";
+"Exercise" = "Exercise";
+"hours" = "hours";
+"day" = "day";
+"week" = "week";
+
+// Settings View
+"TargetStepsPerDay" = "Target steps per day";
+"StepsUnit" = "Steps";
+"AccessoryCircularWidget" = "Accessory circular widget on lock screen";
+"ShowUpdateTime" = "Displays elapsed time";
+"ShowUpdateTimeDescription" = "Displays elapsed time since last update";
+"DataSource" = "Data source";
+"OpenHealthCare" = "Open health care app";
+
+// Widget
+"MeasurementTime" = " MMs";
+"TapToRefresh" = " Tap to refresh";
+"DispliedTime" = " ";
+"ElapsedTime" = " ";
+"WidgetDescription" = "Displays steps and related information based on Apple Health data";
+"WidgetDisplayName" = "Displays steps";

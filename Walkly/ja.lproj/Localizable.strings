@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  Walkly
+
+  Created by yukio on 2022/11/05.
+  
+*/
+
+// Main View
+"Steps" = "歩数";
+"Settings" = "設定";
+"Target" = "目標";
+"Distance" = "移動距離";
+"EnergyBurned" = "消費カロリー";
+"Exercise" = "エクササイズ";
+"hours" = "時間";
+"day" = "日";
+"week" = "週";
+
+// Settings View
+"TargetStepsPerDay" = "目標歩数(1日)";
+"StepsUnit" = "歩";
+"AccessoryCircularWidget" = "ロック画面の円形ウジェット";
+"ShowUpdateTime" = "ゲージに更新経過時間を表示";
+"ShowUpdateTimeDescription" = "前回更新後の経過時間を表示します";
+"DataSource" = "データソース";
+"OpenHealthCare" = "ヘルスケアを開く";
+
+// Widget
+"MeasurementTime" = "計測";
+"TapToRefresh" = " タップで更新";
+"DispliedTime" = "表示";
+"ElapsedTime" = "経過";
+"WidgetDescription" = "Appleヘルスケアのデータを元に歩数や関連情報を表示します";
+"WidgetDisplayName" = "歩数の表示";

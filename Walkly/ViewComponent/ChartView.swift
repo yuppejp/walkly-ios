@@ -55,7 +55,10 @@ struct BarChartView: View {
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.gray)
                     .annotation(position: .top, alignment: .leading) {
-                        Text("目標 \(target.toIntegerString())")
+                        Text("Target")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                        + Text(" \(target.toIntegerString())")
                             .font(.caption)
                             .foregroundColor(.gray)
                     }
@@ -135,7 +138,10 @@ struct LineChartView: View {
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.gray)
                     .annotation(position: .top, alignment: .leading) {
-                        Text("目標 \(target.toIntegerString())")
+                        Text("Target")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                        + Text(" \(target.toIntegerString())")
                             .font(.caption)
                             .foregroundColor(.gray)
                     }
@@ -230,5 +236,7 @@ struct BarChartTestView: View {
 struct BarChartView_Previews: PreviewProvider {
     static var previews: some View {
         BarChartTestView()
+        .environment(\.locale, .init(identifier: "ja"))
+        //.environment(\.locale, .init(identifier: "en"))
     }
 }

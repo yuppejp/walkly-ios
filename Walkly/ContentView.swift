@@ -50,10 +50,10 @@ struct ContentView: View {
 //                    viewModel.chartData.items[0].value += 100
 //                }
             }
-            .navigationBarTitle(Text("歩数"), displayMode: .inline)
+            .navigationBarTitle(Text("Steps"), displayMode: .inline)
             .navigationBarItems(trailing:
                                     NavigationLink(destination: AppDefaultsView(defaults: defaults)
-                                        .navigationTitle("設定")
+                                        .navigationTitle("Settings")
                                     ) {
                 Image(systemName: "gearshape.fill")
                     .foregroundColor(.gray)
@@ -75,6 +75,8 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environment(\.locale, .init(identifier: "ja"))
+            //.environment(\.locale, .init(identifier: "en"))
     }
 }
 
@@ -84,9 +86,9 @@ struct StepCountView: View {
     
     var body: some View {
         if (stepCount.value > 0) {
-            RingProgressView(title: "歩数", label: "目標", total: Double(total), value: stepCount.value, date: stepCount.date)
+            RingProgressView(title: "Steps", label: "Target", total: Double(total), value: stepCount.value, date: stepCount.date)
         } else {
-            RingProgressView(title: "歩数", label: "目標", total: Double(total), value: 0, date: Date())
+            RingProgressView(title: "Steps", label: "Target", total: Double(total), value: 0, date: Date())
         }
     }
 }
@@ -96,27 +98,32 @@ struct ActivityView: View {
     @ObservedObject var activeEnergyBurned: Statistics
     @ObservedObject var appleExerciseTime: Statistics
 
+    private let distance = NSLocalizedString("Distance", comment: "Distance")
+    private let EnergyBurned = NSLocalizedString("EnergyBurned", comment: "EnergyBurned")
+    private let Exercise = NSLocalizedString("Exercise", comment: "Exercise")
+    private let hours = NSLocalizedString("hours", comment: "hours")
+
     var body: some View {
         HStack {
             Spacer()
             
             if let value = distanceWalkingRunning.value, let date = distanceWalkingRunning.date  {
-                ActivityItmeView(label: "移動距離", value: value.toDecimalString(0, 2), unit: "km", date: date)
+                ActivityItmeView(label: distance, value: value.toDecimalString(0, 2), unit: "km", date: date)
             } else {
-                ActivityItmeView(label: "移動距離", value: "0.0", unit: "km", date: Date())
+                ActivityItmeView(label: distance, value: "0.0", unit: "km", date: Date())
             }
 
             if let value = activeEnergyBurned.value, let date = activeEnergyBurned.date  {
-                ActivityItmeView(label: "消費カロリー", value: value.toDecimalString(0, 1), unit: "kcal", date: date)
+                ActivityItmeView(label: EnergyBurned, value: value.toDecimalString(0, 1), unit: "kcal", date: date)
             } else {
-                ActivityItmeView(label: "消費カロリー", value: "0.0", unit: "kcal", date: Date())
+                ActivityItmeView(label: EnergyBurned, value: "0.0", unit: "kcal", date: Date())
             }
 
             if let value = appleExerciseTime.value, let date = appleExerciseTime.date  {
-                ActivityItmeView(label: "エクササイズ", value: String(format: "%02d:%02d",Int(value / 60), Int(value.truncatingRemainder(dividingBy: 60))),
-                                 unit: "時間", date: date)
+                ActivityItmeView(label: Exercise, value: String(format: "%02d:%02d",Int(value / 60), Int(value.truncatingRemainder(dividingBy: 60))),
+                                 unit: hours, date: date)
             } else {
-                ActivityItmeView(label: "エクササイズ", value: "00:00", unit: "時間", date: Date())
+                ActivityItmeView(label: Exercise, value: "00:00", unit: "hours", date: Date())
             }
 
             Spacer()
@@ -158,9 +165,9 @@ struct HistoryView: View {
     var body: some View {
         VStack {
             Picker("", selection: $days) {
-                Text("日")
+                Text("day")
                     .tag(1)
-                Text("週")
+                Text("week")
                     .tag(7)
             }
             .pickerStyle(SegmentedPickerStyle())

@@ -84,7 +84,7 @@ class ViewModel: ObservableObject, Identifiable {
             if let result = result {
                 DispatchQueue.main.async {
                     if result.count == 0 {
-                        // 今日のデータがない場合は0クリア
+                        // Clear data when there is no data for today
                         self.stepCount = Statistics()
                         self.distanceWalkingRunning = Statistics()
                         self.activeEnergyBurned = Statistics()
@@ -95,44 +95,24 @@ class ViewModel: ObservableObject, Identifiable {
                     for statistics in result {
                         switch statistics.identifier {
                         case .stepCount:
-                            //let item = ListRowItem(date: statistics.endDate, value: statistics.value.toIntegerString(), description: "歩数")
-                            //self.dataSource.append(item)
                             self.stepCount = Statistics(statistics)
                             
-                            // ウィジェットと共有用
+                            // for widgets and sharing
                             defaults.lastStepCount = statistics.value
                             defaults.lastStepCountDate = statistics.endDate
                             
                         case .distanceWalkingRunning:
-                            //let item = ListRowItem(date: statistics.endDate, value: statistics.value.toDecimalString(0, 2), description: "移動距離")
-                            //self.dataSource.append(item)
                             self.distanceWalkingRunning = Statistics(statistics)
                             
-                            // ウィジェットと共有用
+                            // for widgets and sharing
                             defaults.lastDistanceWalkingRunning = statistics.value
                             defaults.lastDistanceWalkingRunningDate = statistics.endDate
                             
                         case .activeEnergyBurned:
-                            //let item = ListRowItem(date: statistics.endDate, value: statistics.value.toDecimalString(0, 1), description: "アクティビティエネルギー")
-                            //self.dataSource.append(item)
                             self.activeEnergyBurned = Statistics(statistics)
                             
                         case .appleExerciseTime:
-                            //let item = ListRowItem(date: statistics.endDate, value: statistics.value.toIntegerString(), description: "エクササイズ時間")
-                            //self.dataSource.append(item)
                             self.appleExerciseTime = Statistics(statistics)
-                            
-//                        case .walkingStepLength:
-//                            //let item = ListRowItem(date: statistics.endDate, value: statistics.value.toIntegerString(), description: "歩幅")
-//                            //self.dataSource.append(item)
-//
-//                        case .walkingHeartRateAverage:
-//                            //let item = ListRowItem(date: statistics.endDate, value: statistics.value.toIntegerString(), description: "歩行時平均心拍数")
-//                            //self.dataSource.append(item)
-//
-//                        case .oxygenSaturation:
-//                            //let item = ListRowItem(date: statistics.endDate, value: statistics.value.toPercentString(), description: "血中酸素濃度")
-//                            //self.dataSource.append(item)
                             
                         default:
                             print(statistics.identifier)
@@ -153,13 +133,10 @@ class ViewModel: ObservableObject, Identifiable {
         
         let startOfToday = Calendar.current.startOfDay(for: Date())
         let lastWeek = Calendar.current.date(byAdding: .day, value: -7, to: startOfToday) ?? Date()
-//        let startOfWeek = Calendar.current.(for: Date())
         var from = Date()
         let to = Date()
         var anchor = Date()
         var interval = DateComponents()
-        // let interval = DateComponents(minute: 1)
-        // let interval = DateComponents(hour: 1)
         
         switch fetchDays {
         case 1:
@@ -194,18 +171,8 @@ class ViewModel: ObservableObject, Identifiable {
             if let results = results {
                 DispatchQueue.main.async {
                     if results.count != self.chartData.items.count {
-                        // データの個数が変わった場合はオールクリア
+                        // All clear when the number of data changes
                         self.chartData.items.removeAll()
-                        
-//                        if results.count == 0 {
-//                            // 日足の場合は現在時間を0にセット
-//                            if self.fetchDays == 1 {
-//                                let now = Date()
-//                                let label = now.toString("H")
-//                                let item = ChartDataItem(label: label, value: 0.0)
-//                                self.chartData.items.append(item)
-//                            }
-//                        }
                     }
                     
                     for result in results {
@@ -215,34 +182,34 @@ class ViewModel: ObservableObject, Identifiable {
                         
                         switch self.fetchDays {
                         case 1:
-                            // 時間
+                            // hourly
                             //let formatter = DateFormatter()
                             //formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "H", options: 0, locale: Locale(identifier: "ja_JP"))
                             //label = formatter.string(from: result.startDate)
                             label = result.startDate.toString("H")
                         case 6, 7:
-                            // 曜日
+                            // daily
                             let formatter = DateFormatter()
                             formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "EEEEEE", options: 0, locale: Locale(identifier: "ja_JP"))
                             label = formatter.string(from: result.startDate)
                             
-                            // ラベル名が重複しているとグラフがグループされれるため重複しない名前に変更
+                            // If the label name is duplicated, the graph will be grouped, so change it to a non-duplicate name.
                             if result.startDate <= lastWeek {
                                 label = " " + label
                             }
                             
                         case 30:
-                            // 日
+                            // daily of a month
                             let formatter = DateFormatter()
                             formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "d", options: 0, locale: Locale(identifier: "ja_JP"))
                             label = formatter.string(from: result.startDate)
                         case 365:
-                            // 月
+                            // Monthly
                             let formatter = DateFormatter()
                             formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M", options: 0, locale: Locale(identifier: "ja_JP"))
                             label = formatter.string(from: result.endDate)
                         case 999:
-                            // 年
+                            // yearly
                             let formatter = DateFormatter()
                             formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "y", options: 0, locale: Locale(identifier: "ja_JP"))
                             label = formatter.string(from: result.endDate)
@@ -252,7 +219,7 @@ class ViewModel: ObservableObject, Identifiable {
                         
                         var found = false
                         for i in 0 ..< self.chartData.items.count {
-                            // 既存のデータラベルがあれば値だけ更新する
+                            // Update only the value if there is an existing data label
                             if self.chartData.items[i].label == label {
                                 self.chartData.items[i].value = result.value
                                 found = true
@@ -260,7 +227,7 @@ class ViewModel: ObservableObject, Identifiable {
                             }
                         }
                         if !found {
-                            // 見つからない場合は追加
+                            // Add when not found
                             let item = ChartDataItem(label: label, value: result.value)
                             self.chartData.items.append(item)
                         }

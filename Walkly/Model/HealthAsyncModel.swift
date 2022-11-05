@@ -19,12 +19,12 @@ class HealthAsyncModel {
         for identifier in identifiers {
             let objectType = HKSampleType.quantityType(forIdentifier: identifier)!
             let query = HKObserverQuery(sampleType: objectType, predicate: nil, updateHandler: { query, completionHandler, error in
-                // 更新検知
+                // update detection
                 updateHandler(query, completionHandler, error)
             })
             healthStore.execute(query)
             
-            // バックグランドでのヘルスケアデータの更新検知を有効にする
+            // Enable Background Health Data Update Detection
             try await healthStore.enableBackgroundDelivery(for: objectType, frequency: .immediate)
         }
     }
@@ -37,14 +37,14 @@ class HealthAsyncModel {
         case .shouldRequest:
             print("requestAuthorization: shouldRequest")
             
-            // ユーザーに許可を求める
+            // ask user for permission
             var readTypes: Set<HKQuantityType> = []
             for identifier in identifiers {
                 readTypes.insert(HKQuantityType.quantityType(forIdentifier: identifier)!)
             }
             _ = try await requestAuthorization(read: readTypes)
             
-            // もう一度状態を確認
+            // check status again
             status = try await getRequestStatusForAuthorization(identifiers: identifiers)
             
         case .unnecessary:
@@ -100,7 +100,7 @@ class HealthAsyncModel {
                 let result = try await fetchOneToday(healthStore: healthStore, identifier: identifier)
                 results.append(result)
             } catch {
-                // errorNoData は想定内のためエラーにしない
+                // errorNoData is not an error because it is within expectations
                 let nsError = error as NSError
                 if nsError.code != HKError.Code.errorNoData.rawValue {
                     throw error
@@ -205,40 +205,12 @@ class HealthAsyncModel {
         
         // https://zenn.dev/ueshun/scraps/90fbb43a2bb3d7
         let healthStore = HKHealthStore()
-//        let readTypes = Set([
-//            HKQuantityType.quantityType(forIdentifier: identifier)!
-//        ])
         
         let status = try await requestAuthorization(identifiers: [identifier])
         if status != .unnecessary {
             print("requestAuthorization: ", status)
             throw NSError(domain: "Error: requestAuthorization", code: status.rawValue)
         }
-
-        // 取得間隔
-        //let interval = DateComponents(day: 1)
-        //let interval = DateComponents(hour: 1)
-        //let interval = DateComponents(minute: 1)
-
-//        // アンカーポイントの日付を月曜日の午前0時に設定
-//        let calendar = Calendar.current
-//        let components = DateComponents(
-//            calendar: calendar,
-//            timeZone: calendar.timeZone,
-//            hour: 0,
-//            minute: 0,
-//            second: 0,
-//            weekday: 2
-//        )
-//
-//        // アンカーポイントを直前の月曜に補正
-//        let anchorDate = calendar.nextDate(
-//            after: Date(),
-//            matching: components,
-//            matchingPolicy: .nextTime,
-//            repeatedTimePolicy: .first,
-//            direction: .backward) ?? Date()
-//        let anchorDate = Calendar.current.startOfDay(for: Date())
 
         var options: HKStatisticsOptions
         if identifier == .walkingStepLength {

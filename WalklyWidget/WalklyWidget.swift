@@ -59,7 +59,7 @@ struct SimpleProvider: TimelineProvider {
             do {
                 let todayResults = try await model.fetchTody(identifiers: [.stepCount, .distanceWalkingRunning])
                 
-                // 成功時の値を保存
+                // Save value on success
                 let defaluts = AppDefaults()
                 for stat in todayResults {
                     switch stat.identifier  {
@@ -81,7 +81,7 @@ struct SimpleProvider: TimelineProvider {
             } catch {
                 print(error.localizedDescription)
                 
-                // エラー時は前回の値を使用する
+                // Use last value on error
                 DispatchQueue.main.async {
                     var statistics: [HealthStatistics] = []
                     let defaluts = AppDefaults()
@@ -123,7 +123,7 @@ struct ChartProvider: TimelineProvider {
             do {
                 let todayResults = try await model.fetchTody(identifiers: [.stepCount, .distanceWalkingRunning])
                 
-                // 成功時の値を保存
+                // Save value on success
                 let defaluts = AppDefaults()
                 for stat in todayResults {
                     switch stat.identifier  {
@@ -151,7 +151,7 @@ struct ChartProvider: TimelineProvider {
                     data.items.append(item)
                  }
 
-                // 成功時の値を保存
+                // Save value on success
                 Entry.lastChartData = data
 
                 DispatchQueue.main.async {
@@ -162,7 +162,7 @@ struct ChartProvider: TimelineProvider {
             } catch {
                 print(error.localizedDescription)
                 
-                // エラー時は前回の値を使用する
+                // Use last value on error
                 DispatchQueue.main.async {
                     var statistics: [HealthStatistics] = []
                     let defaluts = AppDefaults()
@@ -238,14 +238,12 @@ struct SystemSmallWidgetView: View {
 
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                // 歩数ゲージ
                 Gauge(value: steps, in: 0...total) {
                     Image(systemName: "figure.walk")
                 }
                 .gaugeStyle(.accessoryCircularCapacity)
                 .tint(.green)
 
-                // 達成率
                 VStack(alignment: .leading) {
                     HStack {
                         Text((percent).toPercentString(percentSymbol: ""))
@@ -255,12 +253,11 @@ struct SystemSmallWidgetView: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                    // 計測時刻
                     HStack {
                         Text(stepCount.endDate, style: .time)
                             .font(.caption)
                             .foregroundColor(.gray)
-                        + Text("計測")
+                        + Text("MeasurementTime")
                             .font(.caption2)
                             .foregroundColor(.gray)
                     }
@@ -268,7 +265,6 @@ struct SystemSmallWidgetView: View {
             }
             .frame(maxHeight: .infinity)
 
-            // 歩数
             HStack(spacing: 0) {
                 Text(stepCount.value, format: .number.precision(.fractionLength(0)))
                     .font(.title3)
@@ -276,11 +272,10 @@ struct SystemSmallWidgetView: View {
                     .font(.caption2)
                 + Text(entry.targetSteps, format: .number.precision(.fractionLength(0)))
                     .font(.caption2)
-                + Text("歩")
+                + Text("StepsUnit")
                     .font(.caption2)
             }
 
-            // 歩行距離
             HStack(spacing: 0) {
                 Text(distanceWalkingRunning.value, format: .number.precision(.fractionLength(1)))
                     .font(.title3)
@@ -288,9 +283,7 @@ struct SystemSmallWidgetView: View {
                     .font(.caption)
             }
 
-            // 更新時間
             HStack {
-                // エラー時
                 if entry.error != nil {
                     HStack(spacing: 0) {
                         Image(systemName: "exclamationmark.triangle.fill")
@@ -298,7 +291,7 @@ struct SystemSmallWidgetView: View {
                         Text(Date(), style: .offset)
                             .font(.caption2)
                             .foregroundColor(.gray)
-                        + Text(" タップで更新")
+                        + Text("TapToRefresh")
                             .font(.caption2)
                             .foregroundColor(.gray)
                     }
@@ -306,13 +299,13 @@ struct SystemSmallWidgetView: View {
                     Text(now(), style: .time)
                         .font(.caption2)
                         .foregroundColor(.gray)
-                    + Text("表示")
+                    + Text("DispliedTime")
                         .font(.caption2)
                         .foregroundColor(.gray)
                     + Text(Date(), style: .offset)
                         .font(.caption2)
                         .foregroundColor(.gray)
-                    + Text("経過")
+                    + Text("ElapsedTime")
                         .font(.caption2)
                         .foregroundColor(.gray)
                 }
@@ -420,14 +413,14 @@ struct AccessoryRectangularWidgetView: View {
                         .font(.caption)
                 }
                 HStack(spacing: 0) {
-                    if false /*entry.error == nil*/ {
+                    if entry.error == nil {
                         Text(Date(), style: .offset)
                             .font(.caption)
                     } else {
                         Image(systemName: "exclamationmark.triangle.fill")
                         Text(Date(), style: .offset)
                             .font(.caption)
-                        + Text("タップで更新")
+                        + Text("TapToRefresh")
                             .font(.caption)
                     }
                 }
@@ -473,8 +466,8 @@ struct WalklySimpleWedget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: SimpleProvider(model: model), content: { entry in
             WidgetContentView(entry: entry)
-        }).description(Text("Appleヘルスケアのデータを元に歩数や関連情報を表示します"))
-            .configurationDisplayName(Text("歩数の表示"))
+        }).description(Text("WidgetDescription"))
+            .configurationDisplayName(Text("WidgetDisplayName"))
             .supportedFamilies([.systemSmall,
                                 .accessoryCircular, .accessoryInline])
     }
@@ -487,8 +480,8 @@ struct WalklyChartWedget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: ChartProvider(model: model), content: { entry in
             WidgetContentView(entry: entry)
-        }).description(Text("Appleヘルスケアのデータを元に歩数や関連情報を表示します"))
-            .configurationDisplayName(Text("歩数の表示"))
+        }).description(Text("WidgetDescription"))
+            .configurationDisplayName(Text("WidgetDisplayName"))
             .supportedFamilies([.systemMedium,
                                 .accessoryRectangular])
     }
@@ -520,11 +513,12 @@ struct WalklyWedget_Previews: PreviewProvider {
                 .previewDisplayName("systemSmall")
         }
         .environment(\.locale, .init(identifier: "ja"))
+        //.environment(\.locale, .init(identifier: "en"))
     }
 }
 
 
-//// スケルトン
+//// skeleton
 //struct Provider: IntentTimelineProvider {
 //    func placeholder(in context: Context) -> SimpleEntry {
 //        SimpleEntry(date: Date(), configuration: ConfigurationIntent())

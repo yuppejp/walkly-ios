@@ -9,8 +9,7 @@
 import Foundation
 import HealthKit
 
-// HealthKitの組み込み方法
-// https://kita-note.com/xcode-config-healthkit
+// REF: https://kita-note.com/xcode-config-healthkit
 
 class HealthStatistics {
     var startDate: Date
@@ -24,15 +23,6 @@ class HealthStatistics {
         self.identifier = identifier
         self.value = value
     }
-    
-//    static func get(statistics: [HealthStatistics], identifier: HKQuantityTypeIdentifier) -> HealthStatistics? {
-//        for stat in statistics {
-//            if stat.identifier == identifier {
-//                return stat
-//            }
-//        }
-//        return nil // not found
-//    }
 }
 
 class HealthModel {
@@ -51,12 +41,12 @@ class HealthModel {
             for identifier in identifiers {
                 let objectType = HKSampleType.quantityType(forIdentifier: identifier)!
                 let query = HKObserverQuery(sampleType: objectType, predicate: nil, updateHandler: { query, completionHandler, error in
-                    // 更新検知
+                    // update detection
                     updateHandler(query, completionHandler, error)
                 })
                 self.healthStore.execute(query)
 
-                // バックグランドでのヘルスケアデータの更新検知を有効にする
+                // Enable Background Health Data Update Detection
                 self.healthStore.enableBackgroundDelivery(for: objectType, frequency: .immediate, withCompletion: { success, error in
                     if success {
                         print("Enabled background delivery.")
@@ -88,7 +78,7 @@ class HealthModel {
             case .shouldRequest:
                 print("requestAuthorization: shouldRequest")
                 
-                // ユーザーに許可を求める
+                // ask user for permission
                 self.healthStore.requestAuthorization(toShare: [], read: readTypes, completion: { success, error in
                     if let error = error {
                         print("[requestAuthorization] error: ", error.localizedDescription)
@@ -96,7 +86,7 @@ class HealthModel {
                         return
                     }
                     
-                    // もう一度状態を確認
+                    // check status again
                     self.healthStore.getRequestStatusForAuthorization(toShare: [], read: readTypes, completion: { status, error in
                         completion(status, error)
                     })
@@ -166,7 +156,7 @@ class HealthModel {
                 self.queryToday(healthStore: self.healthStore, identifier: identifier, completion: { result, error in
                     resultCount += 1
                     if let nsError = error as? NSError {
-                        // errorNoData は想定内のためエラーにしない
+                        // errorNoData is not an error because it is within expectations
                         if nsError.code != HKError.Code.errorNoData.rawValue {
                             completion(nil, error)
                             return
@@ -183,121 +173,6 @@ class HealthModel {
 #endif
         })
     }
-
-//    func fetchTody(identifiers: [HKQuantityTypeIdentifier], completion: @escaping ([HealthStatistics]?, Error?) -> ()) {
-//
-////        // demo data
-////        var results: [HealthStatistics] = []
-////        let startDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date() // 昨日
-////        let endDate = Date()
-////        let steps = HealthStatistics(identifier: .stepCount, startDate: startDate, endDate: endDate, value: 20_000 /*5_000*/)
-////        let km = HealthStatistics(identifier: .distanceWalkingRunning, startDate: startDate, endDate: endDate, value: 3.1)
-////        results.append(steps)
-////        results.append(km)
-////        completion(results, nil)
-////        return
-//
-//        requestAuthorization(identifiers: identifiers, completion: { success, error in
-//            let defaluts = AppDefaults()
-//
-//            if let error = error {
-//                defaluts.lastError = error.localizedDescription
-//                completion(nil, error)
-//                return
-//            }
-//
-//            self.fetchOneTody(identifier: .stepCount, completion: { result, error in
-//                if let result = result {
-//                    defaluts.lastError = ""
-//                    defaluts.lastStepCount = result.value
-//                    defaluts.lastStepCountDate = result.endDate
-//                }
-//            })
-//
-//            completion([], nil)
-//        })
-//
-//
-////        requestAuthorization(identifiers: identifiers, completion: { success, error in
-////            var results: [HealthStatistics] = []
-////
-////            if let error = error {
-////                completion(nil, error)
-////                return
-////            }
-////
-////            var index = 0
-////            self.fetchOneTody(identifier: identifiers[index], completion: { result, error in
-////                if let error = error {
-////                    completion(nil, error)
-////                    return
-////                }
-////                if let result = result {
-////                    results.append(result)
-////
-////                    index += 1
-////                    self.fetchOneTody(identifier: identifiers[index], completion: { result, error in
-////                        if let error = error {
-////                            completion(results, error)
-////                            return
-////                        }
-////                        if let result = result {
-////                            results.append(result)
-////                            completion(results, nil)
-////                        } else {
-////                            completion(results, error)
-////                        }
-////                    })
-////                }
-////            })
-////        })
-//    }
-//
-//    func fetchOneTody(identifier: HKQuantityTypeIdentifier, completion: @escaping (HealthStatistics?, Error?) -> ()) {
-//
-//        requestAuthorization(identifiers: [identifier], completion: { success, error in
-//            if let error = error {
-//                completion(nil, error)
-//                return
-//            }
-//
-//#if targetEnvironment(simulator)
-//            // demo data
-//            let startDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date() // 昨日
-//            let endDate = Date()
-//            switch identifier {
-//            case .stepCount:
-//                let steps = HealthStatistics(identifier: .stepCount, startDate: startDate, endDate: endDate, value: 20_000 /*5_000*/)
-//                completion(steps, nil)
-//            case .stepCount:
-//                let km = HealthStatistics(identifier: .distanceWalkingRunning, startDate: startDate, endDate: endDate, value: 3.1)
-//                completion(km, nil)
-//            default:
-//                let error = NSError(domain: "[fetchOneTody] Unknown HKQuantityTypeIdentifier", code: identifier.rawValue)
-//                completion(nil, nil)
-//            }
-//#else
-//            self.queryToday(healthStore: self.healthStore, identifier: identifier, completion: { result, error in
-//                if let nsError = error as? NSError {
-//                    // errorNoData は想定内のためエラーにしない
-//                    if nsError.code == HKError.Code.errorNoData.rawValue {
-//                        let now = Date()
-//                        let result = HealthStatistics(identifier: identifier, startDate: now, endDate: now, value: 0.0)
-//                        completion(result, nil)
-//                    } else {
-//                        completion(nil, error)
-//                    }
-//                }
-//                if let result = result {
-//                    completion(result, nil)
-//                } else {
-//                    completion(nil, error)
-//                }
-//            })
-//#endif
-//        })
-//    }
-
 
     private func queryToday(healthStore: HKHealthStore, identifier: HKQuantityTypeIdentifier, completion: @escaping (HealthStatistics?, Error?) -> ()) {
         let calendar = Calendar(identifier: .gregorian)
@@ -376,42 +251,14 @@ class HealthModel {
     func fetchPeriod(identifier: HKQuantityTypeIdentifier, from: Date, to: Date, anchor: Date,
                      interval: DateComponents, completion: @escaping ([HealthStatistics]?, Error?) -> ()) {
         
-        // https://zenn.dev/ueshun/scraps/90fbb43a2bb3d7
+        // REF: https://zenn.dev/ueshun/scraps/90fbb43a2bb3d7
         let healthStore = HKHealthStore()
-//        let readTypes = Set([
-//            HKQuantityType.quantityType(forIdentifier: identifier)!
-//        ])
         
         requestAuthorization(identifiers: [identifier], completion: { success, error in
             if let error = error {
                 completion(nil, error)
             }
             
-            // 取得間隔
-            //let interval = DateComponents(day: 1)
-            //let interval = DateComponents(hour: 1)
-            //let interval = DateComponents(minute: 1)
-
-    //        // アンカーポイントの日付を月曜日の午前0時に設定
-    //        let calendar = Calendar.current
-    //        let components = DateComponents(
-    //            calendar: calendar,
-    //            timeZone: calendar.timeZone,
-    //            hour: 0,
-    //            minute: 0,
-    //            second: 0,
-    //            weekday: 2
-    //        )
-    //
-    //        // アンカーポイントを直前の月曜に補正
-    //        let anchorDate = calendar.nextDate(
-    //            after: Date(),
-    //            matching: components,
-    //            matchingPolicy: .nextTime,
-    //            repeatedTimePolicy: .first,
-    //            direction: .backward) ?? Date()
-    //        let anchorDate = Calendar.current.startOfDay(for: Date())
-
             var options: HKStatisticsOptions
             if identifier == .walkingStepLength {
                 options = [.discreteAverage ]
@@ -503,7 +350,7 @@ class HealthModel {
         
         healthStore.requestAuthorization(toShare: [], read: readTypes, completion: { success, error in
             if success == false {
-                print("データにアクセスできません")
+                print("can't access data")
                 return
             }
 
