@@ -111,7 +111,7 @@ struct LineChartView: View {
                 y: .value("value", item.value)
             )
             .foregroundStyle(Color.green.gradient.opacity(0.7))
-            .interpolationMethod(.catmullRom) // Use curved line to join points
+            //.interpolationMethod(.catmullRom) // Use curved line to join points
             
 //            PointMark(
 //                x: .value("label", item.label),
@@ -160,7 +160,7 @@ struct LineChartView: View {
                 }
             }
         }
-        .chartYScale(domain: 0...(maxY * (accessory ? 1.7 : 1.2)))
+        .chartYScale(domain: 0...(maxY * (accessory ? 1.5 : 1.2)))
         //.chartYScale(domain: ClosedRange(uncheckedBounds: (lower: 0, upper: maxY)))
         //.chartXAxisLabel("Label")
         .onAppear {

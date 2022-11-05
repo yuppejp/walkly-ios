@@ -19,6 +19,28 @@ struct Entry: TimelineEntry {
     var error: Error?
     static var lastChartData = ChartData(data: [])
 
+
+    init(date: Date = Date(), targetSteps: Double = 0.0, statistics: [HealthStatistics] = [], chartData: ChartData = ChartData(data: []), error: Error? = nil) {
+        self.date = date
+        self.targetSteps = targetSteps
+        self.statistics = statistics
+        self.error = error
+
+#if targetEnvironment(simulator)
+        let demoSteps: [Double] = [90.0, 1000.0, 200.0, 70.0, 20.0, 1000.0, 120.0, 100.0, 200.0, 100, 500, 1600.0]
+        var items: [ChartDataItem] = []
+        var hour = 7
+        for steps in demoSteps {
+            let item = ChartDataItem(label: String(hour), value: steps)
+            items.append(item)
+            hour += 1
+        }
+        self.chartData = ChartData(data: items)
+#else
+        self.chartData = chartData
+#endif
+    }
+    
     func getStatistics(identifier: HKQuantityTypeIdentifier) -> HealthStatistics {
         for stat in statistics {
             if stat.identifier == identifier {
@@ -78,74 +100,6 @@ struct SimpleProvider: TimelineProvider {
                 }
             }
         }
-
-//    var model: HealthModel
-//    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-//
-//        let defaluts = AppDefaults()
-//        model.fetchTody(identifiers: [.stepCount, .distanceWalkingRunning], completion: { result, error in
-//            var entry = Entry()
-//
-//            // debug
-//            var statistics: [HealthStatistics] = []
-//            statistics.append(HealthStatistics(identifier: .stepCount,
-//                                               startDate: defaluts.lastStepCountDate,
-//                                               endDate: defaluts.lastStepCountDate,
-//                                               value: defaluts.lastStepCount))
-//            statistics.append(HealthStatistics(identifier: .distanceWalkingRunning,
-//                                               startDate: defaluts.lastDistanceWalkingRunningDate,
-//                                               endDate: defaluts.lastDistanceWalkingRunningDate,
-//                                               value: defaluts.lastDistanceWalkingRunning))
-//            if defaluts.lastError != "" {
-//                let error = NSError(domain: defaluts.lastError, code: 0)
-//                entry = Entry(targetSteps: defaluts.targetSteps, statistics: statistics, error: error)
-//            } else {
-//                entry = Entry(targetSteps: defaluts.targetSteps, statistics: statistics)
-//            }
-//            let timeline = Timeline(entries: [entry], policy: .atEnd)
-//            completion(timeline)
-//
-//
-//
-////            if let result = result {
-////                // 成功時の値を保存
-////                for stat in result {
-////                    switch stat.identifier  {
-////                    case .stepCount:
-////                        defaluts.lastStepCount = stat.value
-////                        defaluts.lastStepCountDate = stat.endDate
-////                    case .distanceWalkingRunning:
-////                        defaluts.lastDistanceWalkingRunning = stat.value
-////                        defaluts.lastDistanceWalkingRunningDate = stat.endDate
-////                    default: break
-////                    }
-////                }
-////
-////                entry = Entry(targetSteps: defaluts.targetSteps, statistics: result)
-////            }
-////            if let error = error {
-////                // エラー時は前回の値を使用する
-////                var statistics: [HealthStatistics] = []
-////                statistics.append(HealthStatistics(identifier: .stepCount,
-////                                                   startDate: defaluts.lastStepCountDate,
-////                                                   endDate: defaluts.lastStepCountDate,
-////                                                   value: defaluts.lastStepCount))
-////                statistics.append(HealthStatistics(identifier: .distanceWalkingRunning,
-////                                                   startDate: defaluts.lastDistanceWalkingRunningDate,
-////                                                   endDate: defaluts.lastDistanceWalkingRunningDate,
-////                                                   value: defaluts.lastDistanceWalkingRunning))
-////
-////                entry = Entry(targetSteps: defaluts.targetSteps, statistics: statistics, error: error)
-////            }
-////
-//////            let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date()) ?? Date()
-//////            let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
-//////            completion(timeline)
-////
-////            let timeline = Timeline(entries: [entry], policy: .atEnd)
-////            completion(timeline)
-////
-//        })
     }
 
     func getSnapshot(in context: Context, completion: @escaping (Entry) -> Void) {
@@ -369,6 +323,7 @@ struct SystemSmallWidgetView: View {
     
     func now() -> Date {
 #if targetEnvironment(simulator)
+        // demo
         let calendar = Calendar(identifier: .gregorian)
         return calendar.date(bySettingHour: 18, minute: 55, second: 0, of: Date()) ?? Date()
 #else
@@ -379,15 +334,6 @@ struct SystemSmallWidgetView: View {
 
 struct SystemMediumWidgetView: View {
     var entry: Entry
-//    var chartData = ChartData(data: [
-//        .init(label: "Sun", value: 9000),
-//        .init(label: "Mon", value: 5000),
-//        .init(label: "Tue", value: 7000),
-//        .init(label: "Wed", value: 4000),
-//        .init(label: "Thu", value: 3000),
-//        .init(label: "Fri", value: 8000),
-//        .init(label: "Sat", value: 13000)
-//    ])
 
     var body: some View {
         HStack(spacing: 0) {
@@ -443,50 +389,46 @@ struct AccessoryCircularWidgetView: View {
 
 struct AccessoryRectangularWidgetView: View {
     var entry: Entry
-//    var chartData = ChartData(data: [
-//        .init(label: "7", value: 900),
-//        .init(label: "8", value: 500),
-//        .init(label: "9", value: 700),
-//        .init(label: "10", value: 400),
-//        .init(label: "11", value: 300),
-//        .init(label: "12", value: 1200),
-//        .init(label: "13", value: 100)
-//    ])
 
     var body: some View {
         let stepCount = entry.getStatistics(identifier: .stepCount)
+        let distanceWalkingRunning = entry.getStatistics(identifier: .distanceWalkingRunning)
         let steps = stepCount.value
+        let km = distanceWalkingRunning.value
         let total = entry.targetSteps
         let percent = total == 0 ? 0.0 : steps / total
         
         ZStack {
-            VStack(spacing: 0) {
-                HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
+                HStack(alignment: .top, spacing: 0) {
                     Image(systemName: "figure.walk")
                         .font(.headline)
-
                     Text(" ")
-                    Text(percent, format: .percent.precision(.fractionLength(0)))
-                        .font(.headline)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                Text(stepCount.endDate, style: .time)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                if entry.error == nil {
-                    if AppDefaults().showOffsetTime {
-                        VStack(spacing: 0) {
-                            Text(Date(), style: .offset)
-                                .font(.caption)
-                                .multilineTextAlignment(.leading)
-                        }
+                    HStack(alignment: .top, spacing: 0) {
+                        Text(km, format: .number.precision(.fractionLength(1)))
+                            .font(.headline)
+                        + Text("km")
+                            .font(.caption)
                     }
-                } else {
-                    HStack(spacing: 0) {
+                }
+                HStack(spacing: 0) {
+                    Text(stepCount.endDate, style: .time)
+                    Text(" ")
+                    Text(percent.toPercentString(percentSymbol: ""))
+                        .font(.headline)
+                    + Text("%")
+                        .font(.caption)
+                }
+                HStack(spacing: 0) {
+                    if false /*entry.error == nil*/ {
+                        Text(Date(), style: .offset)
+                            .font(.caption)
+                    } else {
                         Image(systemName: "exclamationmark.triangle.fill")
-                            .font(.caption2)
-                        Text("タップで更新")
-                            .font(.caption2)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Text(Date(), style: .offset)
+                            .font(.caption)
+                        + Text("タップで更新")
+                            .font(.caption)
                     }
                 }
             }
@@ -565,17 +507,17 @@ struct WalklyWedget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             WidgetContentView(entry: Entry(date: Date(), statistics: []))
+                .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+                .previewDisplayName("accessoryCircular")
+            WidgetContentView(entry: Entry(date: Date(), statistics: []))
+                .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+                .previewDisplayName("accessoryRectangular")
+            WidgetContentView(entry: Entry(date: Date(), statistics: []))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
                 .previewDisplayName("systemMedium")
             WidgetContentView(entry: Entry(date: Date(), statistics: []))
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDisplayName("systemSmall")
-            WidgetContentView(entry: Entry(date: Date(), statistics: []))
-                .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
-                .previewDisplayName("accessoryRectangular")
-            WidgetContentView(entry: Entry(date: Date(), statistics: []))
-                .previewContext(WidgetPreviewContext(family: .accessoryCircular))
-                .previewDisplayName("accessoryCircular")
         }
         .environment(\.locale, .init(identifier: "ja"))
     }

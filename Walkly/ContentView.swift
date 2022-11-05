@@ -22,16 +22,12 @@ struct ContentView: View {
                     .frame(width: 200, height: 200)
                     .background {
                         VStack {
-                            Text((viewModel.stepCount.value / defaults.targetSteps), format: .percent.precision(.fractionLength(0)))
-                                .font(.headline)
-                                .foregroundColor(.gray)
+                            Image(systemName: "figure.walk")
+                                .font(.title2)
                             Text(viewModel.stepCount.value, format: .number.precision(.fractionLength(0)))
                                 .font(.largeTitle)
-                            Text("目標: ")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                            + Text(defaults.targetSteps, format: .number.precision(.fractionLength(0)))
-                                .font(.caption)
+                            Text((viewModel.stepCount.value / defaults.targetSteps), format: .percent.precision(.fractionLength(0)))
+                                .font(.headline)
                                 .foregroundColor(.gray)
                             Text(viewModel.stepCount.date, style: .time)
                                 .font(.caption)
@@ -172,12 +168,11 @@ struct HistoryView: View {
             
             if data.items.count == 0 {
                 VStack {
-                    ProgressView("wait…", value: 1)
+                    ProgressView("", value: 1)
                         .progressViewStyle(CircularProgressViewStyle())
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             } else {
-                    
                 if viewModel.fetchDays == 1 {
                     LineChartView(data: data, stacked: true, target: defaults.targetSteps)
                         .padding()

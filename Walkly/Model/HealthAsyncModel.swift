@@ -311,6 +311,12 @@ class HealthAsyncModel {
                     i += 1
                 }
 #endif
+                if result.count == 0 && identifier == .stepCount {
+                    let now = Date()
+                    let stat = HealthStatistics(identifier: .stepCount, startDate: now, endDate: now, value: 0.0)
+                    result.append(stat)
+                }
+
                 continuation.resume(returning: result)
             }
             healthStore.execute(query)

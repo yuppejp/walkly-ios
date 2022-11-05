@@ -193,22 +193,23 @@ class ViewModel: ObservableObject, Identifiable {
         model.fetchPeriod(identifier: .stepCount, from: from, to: to, anchor: anchor, interval: interval, completion: { results, error in
             if let results = results {
                 DispatchQueue.main.async {
-                    if results.count < self.chartData.items.count {
-                        // データの個数が減った場合は日付が変わった可能性があるためオールクリア
+                    if results.count != self.chartData.items.count {
+                        // データの個数が変わった場合はオールクリア
                         self.chartData.items.removeAll()
                         
-                        
-                        // 日足の場合は現在時間を0にセット
-                        if self.fetchDays == 1 {
-                            let now = Date()
-                            let label = now.toString("H")
-                            let item = ChartDataItem(label: label, value: 0.0)
-                            self.chartData.items.append(item)
-                        }
+//                        if results.count == 0 {
+//                            // 日足の場合は現在時間を0にセット
+//                            if self.fetchDays == 1 {
+//                                let now = Date()
+//                                let label = now.toString("H")
+//                                let item = ChartDataItem(label: label, value: 0.0)
+//                                self.chartData.items.append(item)
+//                            }
+//                        }
                     }
                     
                     for result in results {
-                        print("***** startDate: \(result.startDate.toString()), endDate: \(result.endDate.toString()), value: \(result.value)")
+                        //print("***** startDate: \(result.startDate.toString()), endDate: \(result.endDate.toString()), value: \(result.value)")
                         
                         var label = ""
                         
