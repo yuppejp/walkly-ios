@@ -561,8 +561,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Walkly/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = NSHealthShareUsageDescription;
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = NSHealthUpdateUsageDescription;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses HealthKit to get information related to steps. The acquired information is used only for the purpose of displaying in this application and is not shared with other applications.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app shares information related to steps with HealthKit. It is never shared with other apps.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -599,8 +599,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Walkly/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = NSHealthShareUsageDescription;
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = NSHealthUpdateUsageDescription;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses HealthKit to get information related to steps. The acquired information is used only for the purpose of displaying in this application and is not shared with other applications.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app shares information related to steps with HealthKit. It is never shared with other apps.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
