@@ -50,6 +50,10 @@ class ViewModel: ObservableObject, Identifiable {
     @Published var healthKitError: Error?
     @Published var chartData: ChartData = ChartData(data: [])
 
+    func isAvailable() -> Bool {
+        return model.isAvailable()
+    }
+    
     func autoUpdate() {
         let identifiers: [HKQuantityTypeIdentifier] = [.stepCount/*, .oxygenSaturation*/]
 

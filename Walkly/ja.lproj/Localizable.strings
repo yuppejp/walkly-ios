@@ -2,7 +2,7 @@
   Localizable.strings
   Walkly
 
-  Created by yukio on 2022/11/05.
+  Created on 2022/11/05.
   
 */
 
@@ -16,6 +16,7 @@
 "hours" = "時間";
 "day" = "日";
 "week" = "週";
+"HealthIsUnavailable" = "Appleヘルスケアを利用できません";
 
 // Settings View
 "TargetStepsPerDay" = "目標歩数(1日)";

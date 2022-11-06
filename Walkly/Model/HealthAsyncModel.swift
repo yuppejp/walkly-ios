@@ -2,7 +2,7 @@
 //  HealthAyncModel.swift
 //  Walkly
 //
-//  Created by yukio on 2022/11/03.
+//  Created on 2022/11/03.
 //
 
 import Foundation
@@ -10,6 +10,10 @@ import HealthKit
 
 class HealthAsyncModel {
     let healthStore = HKHealthStore()
+
+    func isAvailable() -> Bool {
+        return HKHealthStore.isHealthDataAvailable()
+    }
 
     func enableUpdateHandler(identifiers: [HKQuantityTypeIdentifier], updateHandler: @escaping (HKObserverQuery, @escaping HKObserverQueryCompletionHandler, Error?) -> Void) async throws {
         

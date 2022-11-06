@@ -158,7 +158,11 @@ struct HistoryView: View {
             .pickerStyle(SegmentedPickerStyle())
             .padding(EdgeInsets(top: 8, leading: 16, bottom: 0, trailing: 16))
             
-            if data.items.count == 0 {
+            if !viewModel.isAvailable() {
+                Text("HealthIsUnavailable")
+                    .font(.caption)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else if data.items.count == 0 {
                 VStack {
                     ProgressView("", value: 1)
                         .progressViewStyle(CircularProgressViewStyle())

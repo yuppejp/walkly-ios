@@ -29,6 +29,10 @@ class HealthModel {
     let healthStore = HKHealthStore()
     static var debugCount = 0.0
 
+    func isAvailable() -> Bool {
+        return HKHealthStore.isHealthDataAvailable()
+    }
+    
     func enableUpdateHandler(identifiers: [HKQuantityTypeIdentifier], updateHandler: @escaping (HKObserverQuery, @escaping HKObserverQueryCompletionHandler, Error?) -> Void) {
         // REF: https://qiita.com/dotrikun/items/73db477f8fb23f9d783b
         
