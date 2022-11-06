@@ -1,6 +1,6 @@
 <img width="220" alt="appicon" src="https://user-images.githubusercontent.com/20147818/200149330-aac5fa0c-ae0a-41ee-9f76-229ea9c0c885.png" align="left"/>
 <div>
-<h2>Wally - iPhone版</h2>
+<h2>Walkly - iPhone版</h2>
 <p>Appleヘルスケアの計測データを元に歩数を表示するiPhone向けのアプリです。歩数から換算した移動距離や消費カロリーも表示できます。Apple Watchを併用している場合はiPhoneとApple Watchの歩数カウントを重複なしでマージして表示します。</p>
 <p>実験的にホーム画面やロック画面のウィジェットにも対応しています。注：端末がロックされている場合はヘルスデータが暗号化されて読み取れないため前回の読み取り値を表示します。</p>
 </div>
