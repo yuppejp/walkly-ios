@@ -16,6 +16,7 @@
 "hours" = "時間";
 "day" = "日";
 "week" = "週";
+"measuring" = "計測中";
 "HealthIsUnavailable" = "Appleヘルスケアを利用できません";
 
 // Settings View

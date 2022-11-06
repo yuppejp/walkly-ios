@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  Walkly
+
+  Created on 2022/11/06.
+  
+*/
+
+NSHealthShareUsageDescription = "このアプリはHealthKitを使用して歩数に関連する情報を取得します。取得した情報は本アプリで表示するための目的でのみ使用され、他のアプリに共有されることはありません。";
+NSHealthUpdateUsageDescription = "このアプリはHealthKitと歩数に関連する情報を共有します。他のアプリと共有されることはありません。";
+

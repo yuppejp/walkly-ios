@@ -16,6 +16,7 @@
 "hours" = "hours";
 "day" = "day";
 "week" = "week";
+"measuring" = "measuring";
 "HealthIsUnavailable" = "Apple Health Care is unavailable";
 
 // Settings View

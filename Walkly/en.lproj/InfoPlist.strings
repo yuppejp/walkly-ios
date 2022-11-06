@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  Walkly
+
+  Created on 2022/11/06.
+  
+*/
+
+NSHealthShareUsageDescription = "This app uses HealthKit to get information related to steps. The acquired information is used only for the purpose of displaying in this application and is not shared with other applications.";
+NSHealthUpdateUsageDescription = "This app shares information related to steps with HealthKit. It is never shared with other apps.";

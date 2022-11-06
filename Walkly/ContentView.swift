@@ -73,8 +73,8 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environment(\.locale, .init(identifier: "ja"))
-            //.environment(\.locale, .init(identifier: "en"))
+            //.environment(\.locale, .init(identifier: "ja"))
+            .environment(\.locale, .init(identifier: "en"))
     }
 }
 
@@ -131,12 +131,27 @@ struct ActivityView: View {
                 Text(unit)
                     .font(.caption)
                     .foregroundColor(.gray)
-                Text(date, style: .time)
-                    .font(.caption2)
-                    .foregroundColor(.gray)
+                if isFuture(date) {
+                    Text(Date(), style: .time)
+                        .font(.caption2)
+                        .foregroundColor(.gray)
+                } else {
+                    Text(date, style: .time)
+                        .font(.caption2)
+                        .foregroundColor(.gray)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .center)
             .padding()
+        }
+        
+        func isFuture(_ date: Date) -> Bool {
+            let now = Date()
+            if now.compare(date) == .orderedAscending {
+                return true
+            } else {
+                return false
+            }
         }
     }
 }

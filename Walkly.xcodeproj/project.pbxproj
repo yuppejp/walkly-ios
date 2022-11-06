@@ -27,6 +27,8 @@
 		5662ED9829015D1700D59992 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5662ED9729015D1700D59992 /* ContentView.swift */; };
 		5662ED9A29015D1800D59992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5662ED9929015D1800D59992 /* Assets.xcassets */; };
 		5662ED9D29015D1800D59992 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5662ED9C29015D1800D59992 /* Preview Assets.xcassets */; };
+		5688771E2917B7E500446845 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 568877212917B7E500446845 /* InfoPlist.strings */; };
+		5688771F2917B7E500446845 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 568877212917B7E500446845 /* InfoPlist.strings */; };
 		569C80E12917407E002FD916 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C80E02917407E002FD916 /* AppIconView.swift */; };
 		56A2F9AF2916273D0067A6C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56A2F9B22916273D0067A6C3 /* Localizable.strings */; };
 		56A2F9B02916273D0067A6C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56A2F9B22916273D0067A6C3 /* Localizable.strings */; };
@@ -82,6 +84,8 @@
 		5662ED9729015D1700D59992 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5662ED9929015D1800D59992 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5662ED9C29015D1800D59992 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		568877202917B7E500446845 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		568877222917B7F100446845 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		569C80E02917407E002FD916 /* AppIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		56A2F9B12916273D0067A6C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56A2F9B32916274B0067A6C3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				56C6B7CF291348A8006141EA /* Util */,
 				56C6B7CD2913484E006141EA /* ViewComponent */,
 				56A2F9B22916273D0067A6C3 /* Localizable.strings */,
+				568877212917B7E500446845 /* InfoPlist.strings */,
 			);
 			path = Walkly;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5606312629015F3E003EDEEF /* Assets.xcassets in Resources */,
+				5688771F2917B7E500446845 /* InfoPlist.strings in Resources */,
 				56A2F9B02916273D0067A6C3 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5662ED9D29015D1800D59992 /* Preview Assets.xcassets in Resources */,
+				5688771E2917B7E500446845 /* InfoPlist.strings in Resources */,
 				56A2F9AF2916273D0067A6C3 /* Localizable.strings in Resources */,
 				5662ED9A29015D1800D59992 /* Assets.xcassets in Resources */,
 			);
@@ -346,6 +353,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		568877212917B7E500446845 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				568877202917B7E500446845 /* en */,
+				568877222917B7F100446845 /* ja */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		56A2F9B22916273D0067A6C3 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -545,7 +561,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Walkly/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "ヘルスデータへのアクセスを許可してください";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = NSHealthShareUsageDescription;
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = NSHealthUpdateUsageDescription;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -582,7 +599,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Walkly/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "ヘルスデータへのアクセスを許可してください";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = NSHealthShareUsageDescription;
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = NSHealthUpdateUsageDescription;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
