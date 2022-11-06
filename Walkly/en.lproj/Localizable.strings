@@ -19,7 +19,7 @@
 
 // Settings View
 "TargetStepsPerDay" = "Target steps per day";
-"StepsUnit" = "Steps";
+"StepsUnit" = "steps";
 "AccessoryCircularWidget" = "Accessory circular widget on lock screen";
 "ShowUpdateTime" = "Displays elapsed time";
 "ShowUpdateTimeDescription" = "Displays elapsed time since last update";
@@ -27,8 +27,8 @@
 "OpenHealthCare" = "Open health care app";
 
 // Widget
-"MeasurementTime" = " MMs";
-"TapToRefresh" = " Tap to refresh";
+"MeasurementTime" = "MMs";
+"TapToRefresh" = "Tap to refresh";
 "DispliedTime" = " ";
 "ElapsedTime" = " ";
 "WidgetDescription" = "Displays steps and related information based on Apple Health data";

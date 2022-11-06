@@ -42,7 +42,6 @@ struct BarChartView: View {
                     Text("\(item.value, format: .number.precision(.fractionLength(0)))")
                         .font(.caption2)
                         .foregroundColor(.gray)
-                        //.foregroundColor(.white)
                         //.rotationEffect(.degrees(90))
                 } else {
                     Text("")
@@ -105,23 +104,39 @@ struct LineChartView: View {
     var annotation: Bool = true
     var xAxis = true
     var yAxis = true
+    var pointMark = false
+    var barMark = true
     var accessory = false
 
     var body: some View {
-        Chart(chartItems) { item in
-            LineMark(
-                x: .value("label", item.label),
-                y: .value("value", item.value)
-            )
-            .foregroundStyle(Color.green.gradient.opacity(0.7))
-            //.interpolationMethod(.catmullRom) // Use curved line to join points
-            
-//            PointMark(
-//                x: .value("label", item.label),
-//                y: .value("value", item.value)
-//            )
-//            .foregroundStyle(Color.green.opacity(0.7))
+        Chart {
+            ForEach(chartItems) { item in
+                LineMark(
+                    x: .value("label", item.label),
+                    y: .value("value", item.value)
+                )
+                .foregroundStyle(Color.green.gradient.opacity(0.7))
+                .interpolationMethod(.catmullRom) // Use curved line to join points
 
+                if pointMark {
+                    PointMark(
+                        x: .value("label", item.label),
+                        y: .value("value", item.value)
+                    )
+                    .foregroundStyle(Color.green.opacity(0.7))
+                }
+            }
+
+            if barMark {
+                ForEach(data.items) { item in
+                    BarMark(
+                        x: .value("label", item.label),
+                        y: .value("value", item.value)
+                    )
+                    .foregroundStyle(Color.green.gradient.opacity(0.7))
+                }
+            }
+            
             if stacked {
                 RuleMark(y: .value("Current", total))
                     .lineStyle(StrokeStyle(lineWidth: 0))

@@ -307,17 +307,17 @@ class HealthModel {
                 }
 
 #if targetEnvironment(simulator)
-                // demo
+                // demo data
                 let demoSteps: [Double] = [90.0, 1000.0, 200.0, 70.0, 20.0, 1000.0, 120.0, 100.0, 200.0, 100, 500, 1600.0]
                 let today = Calendar.current.startOfDay(for: Date())
-                var i = 0
-                for hour in 7 ..< 19 {
+                var hour = 7
+                for steps in demoSteps {
                     let startDate = Calendar.current.date(byAdding: .hour, value: hour, to: today) ?? Date()
                     let endDate = Calendar.current.date(byAdding: .minute, value: 59, to: startDate) ?? Date()
 
                     switch identifier {
                     case .stepCount:
-                        let steps = HealthStatistics(identifier: identifier, startDate: startDate, endDate: endDate, value: demoSteps[i])
+                        let steps = HealthStatistics(identifier: identifier, startDate: startDate, endDate: endDate, value: steps)
                         result.append(steps)
                     case .distanceWalkingRunning:
                         let km = HealthStatistics(identifier: identifier, startDate: startDate, endDate: endDate, value: Double.random(in: 0.1...2.0))
@@ -327,7 +327,7 @@ class HealthModel {
                         result.append(length)
                     default: break
                     }
-                    i += 1
+                    hour += 1
                 }
 #endif
                 

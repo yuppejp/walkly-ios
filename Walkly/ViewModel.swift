@@ -175,10 +175,13 @@ class ViewModel: ObservableObject, Identifiable {
                         self.chartData.items.removeAll()
                     }
                     
+                    var itemCount = 0
+                    var label = ""
                     for result in results {
                         //print("***** startDate: \(result.startDate.toString()), endDate: \(result.endDate.toString()), value: \(result.value)")
                         
-                        var label = ""
+                        itemCount += 1
+                        label = ""
                         
                         switch self.fetchDays {
                         case 1:
@@ -232,6 +235,17 @@ class ViewModel: ObservableObject, Identifiable {
                             self.chartData.items.append(item)
                         }
                     }
+                    
+//                    if self.fetchDays == 1 && itemCount <= 8 {
+//                        if let lastHour = Int(label) {
+//                            var padingHour = lastHour + 1
+//                            for hour in padingHour ..< (padingHour + (8 - itemCount)) {
+//                                label = String(hour)
+//                                let item = ChartDataItem(label: label, value: 0.0)
+//                                self.chartData.items.append(item)
+//                            }
+//                        }
+//                    }
                 }
             }
         })

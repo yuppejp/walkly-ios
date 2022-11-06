@@ -28,7 +28,7 @@
 
 // Widget
 "MeasurementTime" = "計測";
-"TapToRefresh" = " タップで更新";
+"TapToRefresh" = "タップで更新";
 "DispliedTime" = "表示";
 "ElapsedTime" = "経過";
 "WidgetDescription" = "Appleヘルスケアのデータを元に歩数や関連情報を表示します";

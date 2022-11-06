@@ -17,8 +17,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                CircularCapacityView(value: viewModel.stepCount.value,
-                                     total: defaults.targetSteps)
+                GaugeView(value: viewModel.stepCount.value, total: defaults.targetSteps)
                     .frame(width: 200, height: 200)
                     .background {
                         VStack {
@@ -45,7 +44,6 @@ struct ContentView: View {
                     Text(error.localizedDescription)
                         .foregroundColor(.gray)
                 }
-
 //                Button("+") {
 //                    viewModel.chartData.items[0].value += 100
 //                }
@@ -77,19 +75,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
             .environment(\.locale, .init(identifier: "ja"))
             //.environment(\.locale, .init(identifier: "en"))
-    }
-}
-
-struct StepCountView: View {
-    @ObservedObject var stepCount: Statistics
-    let total: Int
-    
-    var body: some View {
-        if (stepCount.value > 0) {
-            RingProgressView(title: "Steps", label: "Target", total: Double(total), value: stepCount.value, date: stepCount.date)
-        } else {
-            RingProgressView(title: "Steps", label: "Target", total: Double(total), value: 0, date: Date())
-        }
     }
 }
 

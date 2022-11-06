@@ -27,6 +27,7 @@ struct Entry: TimelineEntry {
         self.error = error
 
 #if targetEnvironment(simulator)
+        // demo data
         let demoSteps: [Double] = [90.0, 1000.0, 200.0, 70.0, 20.0, 1000.0, 120.0, 100.0, 200.0, 100, 500, 1600.0]
         var items: [ChartDataItem] = []
         var hour = 7
@@ -36,6 +37,7 @@ struct Entry: TimelineEntry {
             hour += 1
         }
         self.chartData = ChartData(data: items)
+        self.targetSteps = 8000.0
 #else
         self.chartData = chartData
 #endif
@@ -257,6 +259,8 @@ struct SystemSmallWidgetView: View {
                         Text(stepCount.endDate, style: .time)
                             .font(.caption)
                             .foregroundColor(.gray)
+                        + Text(" ")
+                            .font(.caption2)
                         + Text("MeasurementTime")
                             .font(.caption2)
                             .foregroundColor(.gray)
@@ -291,6 +295,8 @@ struct SystemSmallWidgetView: View {
                         Text(Date(), style: .offset)
                             .font(.caption2)
                             .foregroundColor(.gray)
+                        + Text(" ")
+                            .font(.caption2)
                         + Text("TapToRefresh")
                             .font(.caption2)
                             .foregroundColor(.gray)
@@ -299,9 +305,13 @@ struct SystemSmallWidgetView: View {
                     Text(now(), style: .time)
                         .font(.caption2)
                         .foregroundColor(.gray)
+                    + Text(" ")
+                        .font(.caption2)
                     + Text("DispliedTime")
                         .font(.caption2)
                         .foregroundColor(.gray)
+                    + Text(" ")
+                        .font(.caption2)
                     + Text(Date(), style: .offset)
                         .font(.caption2)
                         .foregroundColor(.gray)
@@ -316,7 +326,7 @@ struct SystemSmallWidgetView: View {
     
     func now() -> Date {
 #if targetEnvironment(simulator)
-        // demo
+        // demo data
         let calendar = Calendar(identifier: .gregorian)
         return calendar.date(bySettingHour: 18, minute: 55, second: 0, of: Date()) ?? Date()
 #else
@@ -395,44 +405,40 @@ struct AccessoryRectangularWidgetView: View {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(alignment: .top, spacing: 0) {
                     Image(systemName: "figure.walk")
-                        .font(.headline)
                     Text(" ")
                     HStack(alignment: .top, spacing: 0) {
                         Text(km, format: .number.precision(.fractionLength(1)))
-                            .font(.headline)
                         + Text("km")
                             .font(.caption)
                     }
                 }
                 HStack(spacing: 0) {
                     Text(stepCount.endDate, style: .time)
-                    Text(" ")
-                    Text(percent.toPercentString(percentSymbol: ""))
-                        .font(.headline)
+                    + Text(" " + percent.toPercentString(percentSymbol: ""))
                     + Text("%")
                         .font(.caption)
                 }
-                HStack(spacing: 0) {
-                    if entry.error == nil {
-                        Text(Date(), style: .offset)
-                            .font(.caption)
-                    } else {
+                if entry.error != nil {
+                    HStack(spacing: 0) {
                         Image(systemName: "exclamationmark.triangle.fill")
-                        Text(Date(), style: .offset)
                             .font(.caption)
-                        + Text("TapToRefresh")
+                        Text("TapToRefresh")
                             .font(.caption)
                     }
                 }
+                Text(Date(), style: .offset)
+                    .font(.caption)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
 
-            LineChartView(data: entry.chartData,
-                          stacked: true,
-                          xAxis: false,
-                          yAxis: false,
-                          accessory: true)
-                .frame(maxWidth: .infinity)
+            GeometryReader{ geometry in
+                HStack(spacing: 0) {
+                    Spacer()
+                    LineChartView(data: entry.chartData, stacked: true, xAxis: false, yAxis: false, accessory: true)
+                        .frame(width: geometry.size.width * 0.6)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity) // workaround for when using GeometryReader
+            }
         }
     }
 }
@@ -451,9 +457,10 @@ struct AccessoryInlineWidgetView: View {
                 Image(systemName: "exclamationmark.triangle.fill")
             }
             Text(stepCount.value, format: .number.precision(.fractionLength(0)))
-            + Text("歩 ")
+            + Text("StepsUnit")
+            + Text(" ")
             + Text(km.value, format: .number.precision(.fractionLength(1)))
-            + Text("km ")
+            + Text("km")
         }
     }
 }
@@ -501,16 +508,19 @@ struct WalklyWedget_Previews: PreviewProvider {
         Group {
             WidgetContentView(entry: Entry(date: Date(), statistics: []))
                 .previewContext(WidgetPreviewContext(family: .accessoryCircular))
-                .previewDisplayName("accessoryCircular")
+                .previewDisplayName("accCircular")
             WidgetContentView(entry: Entry(date: Date(), statistics: []))
                 .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
-                .previewDisplayName("accessoryRectangular")
+                .previewDisplayName("accRectangular")
             WidgetContentView(entry: Entry(date: Date(), statistics: []))
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-                .previewDisplayName("systemMedium")
+                .previewContext(WidgetPreviewContext(family: .accessoryInline))
+                .previewDisplayName("accInline")
             WidgetContentView(entry: Entry(date: Date(), statistics: []))
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
-                .previewDisplayName("systemSmall")
+                .previewDisplayName("sysSmall")
+            WidgetContentView(entry: Entry(date: Date(), statistics: []))
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .previewDisplayName("sysMedium")
         }
         .environment(\.locale, .init(identifier: "ja"))
         //.environment(\.locale, .init(identifier: "en"))

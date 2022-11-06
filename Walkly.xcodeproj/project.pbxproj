@@ -15,7 +15,7 @@
 		5606312929015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5606312429015F3D003EDEEF /* WalklyWidget.intentdefinition */; };
 		5606312C29015F3E003EDEEF /* WalklyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5606311B29015F3D003EDEEF /* WalklyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5606313629016231003EDEEF /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313129016231003EDEEF /* ChartView.swift */; };
-		5606313729016231003EDEEF /* RingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313229016231003EDEEF /* RingProgressView.swift */; };
+		5606313729016231003EDEEF /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313229016231003EDEEF /* GaugeView.swift */; };
 		5606313829016231003EDEEF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313329016231003EDEEF /* Util.swift */; };
 		5606313929016231003EDEEF /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313429016231003EDEEF /* ViewModel.swift */; };
 		5606313A29016231003EDEEF /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313529016231003EDEEF /* HealthModel.swift */; };
@@ -27,11 +27,12 @@
 		5662ED9829015D1700D59992 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5662ED9729015D1700D59992 /* ContentView.swift */; };
 		5662ED9A29015D1800D59992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5662ED9929015D1800D59992 /* Assets.xcassets */; };
 		5662ED9D29015D1800D59992 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5662ED9C29015D1800D59992 /* Preview Assets.xcassets */; };
+		569C80E12917407E002FD916 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C80E02917407E002FD916 /* AppIconView.swift */; };
 		56A2F9AF2916273D0067A6C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56A2F9B22916273D0067A6C3 /* Localizable.strings */; };
 		56A2F9B02916273D0067A6C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56A2F9B22916273D0067A6C3 /* Localizable.strings */; };
 		56C6B7CA29134244006141EA /* HealthAsyncModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C6B7C929134244006141EA /* HealthAsyncModel.swift */; };
 		56C6B7CB29134244006141EA /* HealthAsyncModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C6B7C929134244006141EA /* HealthAsyncModel.swift */; };
-		56C6B7CE29134873006141EA /* RingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313229016231003EDEEF /* RingProgressView.swift */; };
+		56C6B7CE29134873006141EA /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313229016231003EDEEF /* GaugeView.swift */; };
 		56E38E182907EDF900BA7473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313129016231003EDEEF /* ChartView.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +69,7 @@
 		5606312529015F3E003EDEEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5606312729015F3E003EDEEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5606313129016231003EDEEF /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
-		5606313229016231003EDEEF /* RingProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingProgressView.swift; sourceTree = "<group>"; };
+		5606313229016231003EDEEF /* GaugeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeView.swift; sourceTree = "<group>"; };
 		5606313329016231003EDEEF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		5606313429016231003EDEEF /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		5606313529016231003EDEEF /* HealthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthModel.swift; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		5662ED9729015D1700D59992 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5662ED9929015D1800D59992 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5662ED9C29015D1800D59992 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		569C80E02917407E002FD916 /* AppIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		56A2F9B12916273D0067A6C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56A2F9B32916274B0067A6C3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56C6B7C929134244006141EA /* HealthAsyncModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAsyncModel.swift; sourceTree = "<group>"; };
@@ -184,8 +186,9 @@
 		56C6B7CD2913484E006141EA /* ViewComponent */ = {
 			isa = PBXGroup;
 			children = (
+				569C80E02917407E002FD916 /* AppIconView.swift */,
 				5606313129016231003EDEEF /* ChartView.swift */,
-				5606313229016231003EDEEF /* RingProgressView.swift */,
+				5606313229016231003EDEEF /* GaugeView.swift */,
 			);
 			path = ViewComponent;
 			sourceTree = "<group>";
@@ -246,7 +249,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					5606311A29015F3D003EDEEF = {
 						CreatedOnToolsVersion = 14.0.1;
@@ -262,8 +265,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				ja,
+				Base,
 			);
 			mainGroup = 5662ED8929015D1700D59992;
 			productRefGroup = 5662ED9329015D1700D59992 /* Products */;
@@ -304,7 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5606312829015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */,
-				56C6B7CE29134873006141EA /* RingProgressView.swift in Sources */,
+				56C6B7CE29134873006141EA /* GaugeView.swift in Sources */,
 				56C6B7CB29134244006141EA /* HealthAsyncModel.swift in Sources */,
 				5606313F29016376003EDEEF /* AppDefaults.swift in Sources */,
 				560631402901637F003EDEEF /* Util.swift in Sources */,
@@ -322,12 +325,13 @@
 				5606312929015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */,
 				5606313829016231003EDEEF /* Util.swift in Sources */,
 				5606313D29016358003EDEEF /* AppDefaults.swift in Sources */,
-				5606313729016231003EDEEF /* RingProgressView.swift in Sources */,
+				5606313729016231003EDEEF /* GaugeView.swift in Sources */,
 				5606313A29016231003EDEEF /* HealthModel.swift in Sources */,
 				5662ED9829015D1700D59992 /* ContentView.swift in Sources */,
 				5662ED9629015D1700D59992 /* WalklyApp.swift in Sources */,
 				5606313629016231003EDEEF /* ChartView.swift in Sources */,
 				5606313929016231003EDEEF /* ViewModel.swift in Sources */,
+				569C80E12917407E002FD916 /* AppIconView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -474,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
