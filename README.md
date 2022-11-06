@@ -53,10 +53,13 @@ iOS 16 よりサポートされたChartやホーム画面のウィジェットAP
 - お問い合わせ先<br>
   下記のお問い合わせフォームをご利用ください。
 
-# お問い合わせフォーム
-https://docs.google.com/forms/d/e/1FAIpQLScioz3HhixRDN5C5QQD6BqlHFQHY4wTTYkn6mJ8Z6AUA8LTtg/viewform?vc=0&c=0&w=1&flr=0
+# お問い合わせ先
+アプリに関するご質問はお問い合わせフォームをご利用ください。Googleへのログインは不要です。
+- [お問い合わせフォーム(アプリ利用者向け)](https://docs.google.com/forms/d/e/1FAIpQLScioz3HhixRDN5C5QQD6BqlHFQHY4wTTYkn6mJ8Z6AUA8LTtg/viewform?vc=0&c=0&w=1&flr=0)
 
-  何かご不明な点がございましたら上記のお問い合わせフォームをご利用ください。
+> **Note**
+> 開発者の方からのご質問はGitHubのコミュニケーション機能をご利用ください。
+
 ## 開発者向け情報
 
 ### ビルドツール
