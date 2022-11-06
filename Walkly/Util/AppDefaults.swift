@@ -35,10 +35,16 @@ struct AppDefaultsView: View {
                 }
             }
             Section(header: Text("DataSource")) {
-                Button(action: {
-                    openURL(URL(string: "x-apple-health://")!)
-                }) {
-                    Label("OpenHealthCare", systemImage: "staroflife.fill")
+                if HealthModel().isAvailable() {
+                    Button(action: {
+                        openURL(URL(string: "x-apple-health://")!)
+                    }) {
+                        Label("OpenHealthCare", systemImage: "staroflife.fill")
+                    }
+                } else {
+                    Text("HealthIsUnavailable")
+                        .font(.caption)
+                        .foregroundColor(.gray)
                 }
             }
         }
