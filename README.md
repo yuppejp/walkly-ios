@@ -13,13 +13,7 @@
 ![image](https://user-images.githubusercontent.com/20147818/200150422-f1bd9269-f07f-4f2d-956c-5be220baf425.png)
 
 <div align="center">
-
 </div>
-
-## アプリのダウンロード
-iPhoneでApp Storeにアクセスしてダウンロードしてください。
-
-[![Download_on_the_App_Store_Badge_JP_RGB_blk_100317](https://user-images.githubusercontent.com/20147818/200310005-664e3ddb-761e-48c9-a1cb-06af037804a9.svg)](https://apps.apple.com/jp/app/walkly-%E6%AD%A9%E6%95%B0%E8%A8%88%E3%82%A2%E3%83%97%E3%83%AA/id6444238144)
 
 ## 主な機能
 Appleヘルスケアの計測データをリアルタイムに取得することで歩数や関連する情報を表示します。Apple Watchを併用している場合はiPhoneとApple Watchの歩数カウントを重複なしでマージして表示します。
