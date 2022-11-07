@@ -1,8 +1,11 @@
 <img width="220" alt="appicon" src="https://user-images.githubusercontent.com/20147818/200149330-aac5fa0c-ae0a-41ee-9f76-229ea9c0c885.png" align="left"/>
 <div>
-<h2>Walkly - iPhone版</h2>
-<p>iPhone向けの歩数計アプリです。Appleヘルスケアの計測データを使用して歩数を表示します。歩数から換算した移動距離や消費カロリーも表示できます。</p>
-<p>ホーム画面やロック画面に追加できるウィジェットにも対応しています。注：端末がロックされている場合はヘルスデータが暗号化されてアクセスできないため前回の計測値を表示します。</p>
+<h2>Walkly - 歩数計アプリ</h2>
+<p>iPhone向けの歩数計アプリです。Appleヘルスケアの計測データを使用して歩数を表示します。歩数から換算した移動距離や消費カロリーも表示できます。<br>
+ホーム画面やロック画面に追加できるウィジェットにも対応しています。</p>
+
+<a href="https://apps.apple.com/jp/app/walkly-%E6%AD%A9%E6%95%B0%E8%A8%88%E3%82%A2%E3%83%97%E3%83%AA/id6444238144" target="_blank"><img src="https://user-images.githubusercontent.com/20147818/200310005-664e3ddb-761e-48c9-a1cb-06af037804a9.svg"/></a>
+
 </div>
 <br/>
 
@@ -12,6 +15,11 @@
 <div align="center">
 
 </div>
+
+## アプリのダウンロード
+iPhoneでApp Storeにアクセスしてダウンロードしてください。
+
+[![Download_on_the_App_Store_Badge_JP_RGB_blk_100317](https://user-images.githubusercontent.com/20147818/200310005-664e3ddb-761e-48c9-a1cb-06af037804a9.svg)](https://apps.apple.com/jp/app/walkly-%E6%AD%A9%E6%95%B0%E8%A8%88%E3%82%A2%E3%83%97%E3%83%AA/id6444238144)
 
 ## 主な機能
 Appleヘルスケアの計測データをリアルタイムに取得することで歩数や関連する情報を表示します。Apple Watchを併用している場合はiPhoneとApple Watchの歩数カウントを重複なしでマージして表示します。
