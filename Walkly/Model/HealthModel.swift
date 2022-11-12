@@ -157,7 +157,7 @@ class HealthModel {
 #else
             var resultCount = 0
             for identifier in identifiers {
-                self.queryToday(healthStore: self.healthStore, identifier: identifier, completion: { result, error in
+                self.queryToday(identifier: identifier, completion: { result, error in
                     resultCount += 1
                     if let nsError = error as? NSError {
                         // errorNoData is not an error because it is within expectations
@@ -178,15 +178,13 @@ class HealthModel {
         })
     }
 
-    private func queryToday(healthStore: HKHealthStore, identifier: HKQuantityTypeIdentifier, completion: @escaping (HealthStatistics?, Error?) -> ()) {
-        let calendar = Calendar(identifier: .gregorian)
-        let from = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date() /* - (60 * 60 * 24) */)
-        let to = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: Date() /*  - (60 * 60 * 24) */)
-        
+    private func queryToday(identifier: HKQuantityTypeIdentifier, completion: @escaping (HealthStatistics?, Error?) -> ()) {
+        let now = Date()
+        let startOfDay = Calendar.current.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         let type = HKSampleType.quantityType(forIdentifier: identifier)!
-        let predicate = HKQuery.predicateForSamples(withStart: from, end: to)
-        
         var options: HKStatisticsOptions
+
         switch identifier {
         case .stepCount, .distanceWalkingRunning, .activeEnergyBurned, .appleExerciseTime:
             options = [.cumulativeSum]
@@ -195,7 +193,7 @@ class HealthModel {
         default:
             options = []
         }
-        
+
         let query = HKStatisticsQuery(quantityType: type,
                                       quantitySamplePredicate: predicate,
                                       options: options) { (query, statistics, error) in
@@ -203,10 +201,10 @@ class HealthModel {
                 print("[getTody@HKStatisticsQuery] error: ", error.localizedDescription)
                 completion(nil, error)
             }
-            
+
             if let statistics = statistics {
                 var value = 0.0
-                
+
                 switch identifier {
                 case .stepCount:
                     if let quantity = statistics.sumQuantity() {
@@ -224,7 +222,7 @@ class HealthModel {
                     if let quantity = statistics.sumQuantity() {
                         value = quantity.doubleValue(for: .minute())
                     }
-                    
+
                 case .walkingStepLength:
                     if let quantity = statistics.averageQuantity() {
                         value = quantity.doubleValue(for: .meterUnit(with: .centi))
@@ -240,12 +238,12 @@ class HealthModel {
                 default:
                     print("[getTody@startDate] Unkown identifier: ", identifier)
                 }
-                
+
                 let result = HealthStatistics(identifier: identifier,
                                               startDate: statistics.startDate,
                                               endDate: statistics.endDate,
                                               value: value)
-                
+
                 completion(result, nil)
             }
         }
@@ -296,12 +294,32 @@ class HealthModel {
                             }
                         case .distanceWalkingRunning:
                             if let quantity = stats.sumQuantity() {
-                                let value = quantity.doubleValue(for: .meterUnit(with: .none))
+                                let value = quantity.doubleValue(for: .meterUnit(with: .kilo))
                                 result.append(HealthStatistics(identifier: identifier, startDate: startDate, endDate: endDate, value: value))
                             }
                         case .walkingStepLength:
                             if let quantity = stats.averageQuantity() {
-                                let value = quantity.doubleValue(for: .meterUnit(with: .none))
+                                let value = quantity.doubleValue(for: .meterUnit(with: .centi))
+                                result.append(HealthStatistics(identifier: identifier, startDate: startDate, endDate: endDate, value: value))
+                            }
+                        case .activeEnergyBurned:
+                            if let quantity = stats.sumQuantity() {
+                                let value = quantity.doubleValue(for: .kilocalorie())
+                                result.append(HealthStatistics(identifier: identifier, startDate: startDate, endDate: endDate, value: value))
+                            }
+                        case .appleExerciseTime:
+                            if let quantity = stats.sumQuantity() {
+                                let value = quantity.doubleValue(for: .minute())
+                                result.append(HealthStatistics(identifier: identifier, startDate: startDate, endDate: endDate, value: value))
+                            }
+                        case .walkingHeartRateAverage:
+                            if let quantity = stats.averageQuantity() {
+                                let value = quantity.doubleValue(for: HKUnit(from: "count/min"))
+                                result.append(HealthStatistics(identifier: identifier, startDate: startDate, endDate: endDate, value: value))
+                            }
+                        case .oxygenSaturation:
+                            if let quantity = stats.averageQuantity() {
+                                let value = quantity.doubleValue(for: .percent())
                                 result.append(HealthStatistics(identifier: identifier, startDate: startDate, endDate: endDate, value: value))
                             }
                         default:

@@ -128,14 +128,12 @@ class HealthAsyncModel {
     }
 
     private func fetchOneToday(healthStore: HKHealthStore, identifier: HKQuantityTypeIdentifier) async throws -> HealthStatistics {
-        let calendar = Calendar(identifier: .gregorian)
-        let from = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date() /* - (60 * 60 * 24) */)
-        let to = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: Date() /*  - (60 * 60 * 24) */)
-        
+        let now = Date()
+        let startOfDay = Calendar.current.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         let type = HKSampleType.quantityType(forIdentifier: identifier)!
-        let predicate = HKQuery.predicateForSamples(withStart: from, end: to)
-        
         var options: HKStatisticsOptions
+
         switch identifier {
         case .stepCount, .distanceWalkingRunning, .activeEnergyBurned, .appleExerciseTime:
             options = [.cumulativeSum]
