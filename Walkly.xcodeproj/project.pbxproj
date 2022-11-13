@@ -11,8 +11,6 @@
 		5606312029015F3D003EDEEF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5606311F29015F3D003EDEEF /* SwiftUI.framework */; };
 		5606312329015F3D003EDEEF /* WalklyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606312229015F3D003EDEEF /* WalklyWidget.swift */; };
 		5606312629015F3E003EDEEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5606312529015F3E003EDEEF /* Assets.xcassets */; };
-		5606312829015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5606312429015F3D003EDEEF /* WalklyWidget.intentdefinition */; };
-		5606312929015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5606312429015F3D003EDEEF /* WalklyWidget.intentdefinition */; };
 		5606312C29015F3E003EDEEF /* WalklyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5606311B29015F3D003EDEEF /* WalklyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5606313629016231003EDEEF /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313129016231003EDEEF /* ChartView.swift */; };
 		5606313729016231003EDEEF /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313229016231003EDEEF /* GaugeView.swift */; };
@@ -23,6 +21,8 @@
 		5606313E2901636B003EDEEF /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313529016231003EDEEF /* HealthModel.swift */; };
 		5606313F29016376003EDEEF /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313C29016358003EDEEF /* AppDefaults.swift */; };
 		560631402901637F003EDEEF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5606313329016231003EDEEF /* Util.swift */; };
+		561D36082920765000189794 /* WalklyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 561D360B2920765000189794 /* WalklyWidget.intentdefinition */; };
+		561D36092920765000189794 /* WalklyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 561D360B2920765000189794 /* WalklyWidget.intentdefinition */; };
 		5662ED9629015D1700D59992 /* WalklyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5662ED9529015D1700D59992 /* WalklyApp.swift */; };
 		5662ED9829015D1700D59992 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5662ED9729015D1700D59992 /* ContentView.swift */; };
 		5662ED9A29015D1800D59992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5662ED9929015D1800D59992 /* Assets.xcassets */; };
@@ -67,7 +67,6 @@
 		5606311D29015F3D003EDEEF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		5606311F29015F3D003EDEEF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		5606312229015F3D003EDEEF /* WalklyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalklyWidget.swift; sourceTree = "<group>"; };
-		5606312429015F3D003EDEEF /* WalklyWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WalklyWidget.intentdefinition; sourceTree = "<group>"; };
 		5606312529015F3E003EDEEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5606312729015F3E003EDEEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5606313129016231003EDEEF /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
@@ -79,6 +78,9 @@
 		5606313C29016358003EDEEF /* AppDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		56063141290163FF003EDEEF /* WalklyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalklyWidgetExtension.entitlements; sourceTree = "<group>"; };
 		56063142290164D4003EDEEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		561D360A2920765000189794 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/WalklyWidget.intentdefinition; sourceTree = "<group>"; };
+		561D360D292078F800189794 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WalklyWidget.strings; sourceTree = "<group>"; };
+		561D360F292078FC00189794 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/WalklyWidget.strings; sourceTree = "<group>"; };
 		5662ED9229015D1700D59992 /* Walkly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walkly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5662ED9529015D1700D59992 /* WalklyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalklyApp.swift; sourceTree = "<group>"; };
 		5662ED9729015D1700D59992 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -125,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				5606312229015F3D003EDEEF /* WalklyWidget.swift */,
-				5606312429015F3D003EDEEF /* WalklyWidget.intentdefinition */,
+				561D360B2920765000189794 /* WalklyWidget.intentdefinition */,
 				5606312529015F3E003EDEEF /* Assets.xcassets */,
 				5606312729015F3E003EDEEF /* Info.plist */,
 			);
@@ -313,7 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5606312829015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */,
+				561D36092920765000189794 /* WalklyWidget.intentdefinition in Sources */,
 				56C6B7CE29134873006141EA /* GaugeView.swift in Sources */,
 				56C6B7CB29134244006141EA /* HealthAsyncModel.swift in Sources */,
 				5606313F29016376003EDEEF /* AppDefaults.swift in Sources */,
@@ -329,7 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56C6B7CA29134244006141EA /* HealthAsyncModel.swift in Sources */,
-				5606312929015F3E003EDEEF /* WalklyWidget.intentdefinition in Sources */,
+				561D36082920765000189794 /* WalklyWidget.intentdefinition in Sources */,
 				5606313829016231003EDEEF /* Util.swift in Sources */,
 				5606313D29016358003EDEEF /* AppDefaults.swift in Sources */,
 				5606313729016231003EDEEF /* GaugeView.swift in Sources */,
@@ -353,6 +355,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		561D360B2920765000189794 /* WalklyWidget.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				561D360A2920765000189794 /* Base */,
+				561D360D292078F800189794 /* en */,
+				561D360F292078FC00189794 /* ja */,
+			);
+			name = WalklyWidget.intentdefinition;
+			sourceTree = "<group>";
+		};
 		568877212917B7E500446845 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
